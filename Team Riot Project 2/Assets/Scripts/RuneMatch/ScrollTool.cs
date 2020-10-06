@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using v3 = UnityEngine.Vector3;
 public class ScrollTool : MonoBehaviour
 {
     public GameObject scroll;
-    public GameObject[] runes = new GameObject[26];
     private GameObject openscroll = null;
 
     // Start is called before the first frame update
@@ -20,5 +19,13 @@ public class ScrollTool : MonoBehaviour
         
     }
 
-    
+    void OnMouseUp()
+    {
+        /*Do whatever here as per your need*/
+        if (scroll != null)
+            return;
+        else
+            scroll = Instantiate(openscroll, new v3(0, 0, -6), Quaternion.identity);
+    }
+
 }
