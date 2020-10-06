@@ -8,7 +8,7 @@ public class MazeFly : MonoBehaviour
     private Rigidbody2D flyBody;
 
     //move speed
-    private float moveSpeed = 200;
+    private float moveSpeed = 500;
 
     // Start is called before the first frame update
     void Start()
