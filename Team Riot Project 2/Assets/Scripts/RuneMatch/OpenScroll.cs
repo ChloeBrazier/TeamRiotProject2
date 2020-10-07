@@ -16,6 +16,8 @@ public class OpenScroll : MonoBehaviour
     {
         runetext = Resources.LoadAll("runes", typeof(Texture2D));
         lettertext = Resources.LoadAll("Letters", typeof(Texture2D));
+       
+        //Debug.Log(lettertext[0].name);
         sprites = new GameObject[runetext.Length];
         BuildMatch();
     }
@@ -31,8 +33,8 @@ public class OpenScroll : MonoBehaviour
         float width = this.GetComponent<SpriteRenderer>().bounds.size.x;
         float height = this.GetComponent<SpriteRenderer>().bounds.size.y;
         var rand = new System.Random();
-        
 
+        int idx = 0;
         int wordlength = rand.Next(3, 6);
         v3 pos = this.transform.position;
         List<GameObject> pair = new List<GameObject>();
@@ -40,7 +42,13 @@ public class OpenScroll : MonoBehaviour
         List<int> index = new List<int>();
         for (int i = 0; i < wordlength; i++)
         {
-            var idx = rand.Next(1, 26);
+            //select random rune 
+            //var idx = rand.Next(1,26);
+            
+
+            while(index.Contains(idx) == true)
+                idx = rand.Next(1, 26);
+
             index.Add(idx);
             Texture2D tex = (Texture2D)runetext[idx];
             GameObject gobj = new GameObject();
@@ -55,26 +63,41 @@ public class OpenScroll : MonoBehaviour
             pos.z = -7;
             gobj.transform.position = pos;
             pair.Add(gobj);
+            
         }
-        
+       // index.Reverse();
         
         for (int i = 0; i < wordlength; i++)
         {
-            int pairlength = rand.Next(0, wordlength);
-            var p = pair[i];
-            Texture2D t2 = p.GetComponent<SpriteRenderer>().sprite.texture;
+            //int pairlength = rand.Next(0, wordlength);
+            //var p = pair[i];
+            //Texture2D t2 = p.GetComponent<SpriteRenderer>().sprite.texture;
             int u = index[i];
-            Texture2D tex = (Texture2D)lettertext[u];
+           
+            
 
             //text.text = names[i];
             GameObject obj = new GameObject();
-            obj.AddComponent<SpriteRenderer>().sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, t2.width, t2.height), new Vector2(0, 0));
-            //obj.AddComponent<TextMesh>().text = names[i];
-            //Debug.Log(p.transform.position.z);
-            pos.x = width / 7;
-            pos.y = (-wordlength + i) + height / 4;
-            pos.z = -7;
-            obj.transform.position = pos;
+            foreach (var item in lettertext)
+            {
+                if(item.name == (u+1).ToString())
+                {
+                    Debug.Log("FOUND");
+                    Debug.Log(u);
+                    Texture2D tex = (Texture2D)item;
+                    obj.AddComponent<SpriteRenderer>().sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0, 0));
+                    obj.name = u.ToString();
+                    //obj.AddComponent<TextMesh>().text = names[i];
+                    //Debug.Log(p.transform.position.z);
+                    pos.x = width / 7;
+                    pos.y = (-wordlength + i) + height / 4;
+                    pos.z = -7;
+                    obj.transform.position = pos;
+                    break;
+                }
+                
+            }
+            
             
         }
 
