@@ -22,10 +22,10 @@ public class ScrollTool : MonoBehaviour
     void OnMouseUp()
     {
         /*Do whatever here as per your need*/
-        if (scroll != null)
+        if (openscroll != null)
             return;
         else
-            scroll = Instantiate(openscroll, new v3(0, 0, -6), Quaternion.identity);
+            openscroll = Instantiate(scroll, new v3(0, 0, -6), Quaternion.identity);
     }
 
 }
