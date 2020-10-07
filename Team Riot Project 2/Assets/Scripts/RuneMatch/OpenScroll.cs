@@ -54,8 +54,10 @@ public class OpenScroll : MonoBehaviour
             GameObject gobj = new GameObject();
             
             gobj.AddComponent<SpriteRenderer>().sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0, 0));
-            gobj.AddComponent<BoxCollider2D>().size = new Vector2(tex.width, tex.height);
+            gobj.AddComponent<BoxCollider2D>().size = new Vector2(1, 1);
+            gobj.AddComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             gobj.AddComponent<Rune>();
+            gobj.tag = "rune";
             gobj.name = runetext[idx].name;
             names.Add(runetext[idx].name);
             pos.x = -width/5;
@@ -65,8 +67,17 @@ public class OpenScroll : MonoBehaviour
             pair.Add(gobj);
             
         }
-       // index.Reverse();
-        
+        // index.Reverse();
+
+        for (int i = 0; i < wordlength; i++)
+        {
+            int u = index[i];
+            int id = rand.Next(0, index.Count);
+            int g = index[id];
+            index[id] = u;
+            index[i] = g;
+        }
+
         for (int i = 0; i < wordlength; i++)
         {
             //int pairlength = rand.Next(0, wordlength);
@@ -82,11 +93,15 @@ public class OpenScroll : MonoBehaviour
             {
                 if(item.name == (u+1).ToString())
                 {
-                    Debug.Log("FOUND");
-                    Debug.Log(u);
+                    //Debug.Log("FOUND");
+                   // Debug.Log(u);
                     Texture2D tex = (Texture2D)item;
                     obj.AddComponent<SpriteRenderer>().sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0, 0));
+                    obj.AddComponent<BoxCollider2D>().size = new Vector2(1, 1);
+                    obj.AddComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+                    obj.AddComponent<Rune>();
                     obj.name = u.ToString();
+                    obj.tag = "rune";
                     //obj.AddComponent<TextMesh>().text = names[i];
                     //Debug.Log(p.transform.position.z);
                     pos.x = width / 7;
