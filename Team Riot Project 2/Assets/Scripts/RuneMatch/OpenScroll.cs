@@ -7,7 +7,7 @@ using v3 = UnityEngine.Vector3;
 public class OpenScroll : MonoBehaviour
 {
     List<GameObject> runes;
-    
+    public bool display;
     GameObject[] sprites;
     UnityEngine.Object[] runetext;
     UnityEngine.Object[] lettertext;
@@ -16,7 +16,7 @@ public class OpenScroll : MonoBehaviour
     {
         runetext = Resources.LoadAll("runes", typeof(Texture2D));
         lettertext = Resources.LoadAll("Letters", typeof(Texture2D));
-       
+        this.tag = "openscroll";
         //Debug.Log(lettertext[0].name);
         sprites = new GameObject[runetext.Length];
         BuildMatch();
@@ -25,7 +25,14 @@ public class OpenScroll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(display == false)
+        {
+            this.GetComponent<Renderer>().enabled = false;
+        }
+        else
+        {
+            this.GetComponent<Renderer>().enabled = true;
+        }
     }
 
     void BuildMatch()
@@ -56,6 +63,7 @@ public class OpenScroll : MonoBehaviour
             gobj.AddComponent<SpriteRenderer>().sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0, 0));
             gobj.AddComponent<BoxCollider2D>().size = new Vector2(1, 1);
             gobj.AddComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            gobj.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
             gobj.AddComponent<Rune>();
             gobj.tag = "rune";
             gobj.name = runetext[idx].name;
@@ -99,6 +107,7 @@ public class OpenScroll : MonoBehaviour
                     obj.AddComponent<SpriteRenderer>().sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0, 0));
                     obj.AddComponent<BoxCollider2D>().size = new Vector2(1, 1);
                     obj.AddComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+                    obj.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
                     obj.AddComponent<Rune>();
                     obj.name = u.ToString();
                     obj.tag = "rune";

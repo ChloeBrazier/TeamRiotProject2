@@ -28,7 +28,16 @@ public class Rune : MonoBehaviour
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             transform.Translate(mousePosition);
         }
-
+        GameObject openscroll = GameObject.FindGameObjectWithTag("openscroll");
+        bool dis = openscroll.GetComponent<OpenScroll>().display;
+        if (dis == false)
+        {
+            this.GetComponent<Renderer>().enabled = false;
+        }
+        else
+        {
+            this.GetComponent<Renderer>().enabled = true;
+        }
 
     }
 
@@ -46,6 +55,10 @@ public class Rune : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log("OnCollisionEnter2D");
+        
+        if(col.gameObject.tag == "rune")
+        {
+            Debug.Log("OnCollisionEnter2D");
+        } 
     }
 }

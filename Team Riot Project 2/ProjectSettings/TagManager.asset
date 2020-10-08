@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - rune
+  - openscroll
   layers:
   - Default
   - TransparentFX
