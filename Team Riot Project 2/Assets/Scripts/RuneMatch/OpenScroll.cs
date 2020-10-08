@@ -44,6 +44,7 @@ public class OpenScroll : MonoBehaviour
                 //Debug.Log("DONE");
                 mazeWon = true;
                 display = false;
+                Destroy(this.gameObject);
             }
         }
 

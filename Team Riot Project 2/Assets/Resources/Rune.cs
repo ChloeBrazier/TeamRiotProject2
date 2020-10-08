@@ -41,6 +41,10 @@ public class Rune : MonoBehaviour
                         Debug.Log("FOUND");
                         //mmDebug.Log(answer);
                     }
+                    else
+                    {
+                        transform.position = pos;
+                    }
                     
                 }
             }
