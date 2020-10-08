@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using v3 = UnityEngine.Vector3;
@@ -6,7 +7,7 @@ public class Rune : MonoBehaviour
 {
     private Vector3 pos;
     private bool isDragging;
-
+    public string answer;
     private float z;
     public float dragSpeed = 1f;
     Vector3 lastMousePos;
@@ -27,6 +28,22 @@ public class Rune : MonoBehaviour
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             transform.Translate(mousePosition);
+            GameObject[] runes = GameObject.FindGameObjectsWithTag("rune");
+            foreach (var rune in runes)
+            {
+                if (IsColliding(rune))
+                {
+                    string a1 = rune.GetComponent<Rune>().answer;
+                    if(a1 == answer)
+                    {
+                        SelfDestruct(rune);
+                        SelfDestruct(this.gameObject);
+                        Debug.Log("FOUND");
+                        //mmDebug.Log(answer);
+                    }
+                    
+                }
+            }
         }
         GameObject openscroll = GameObject.FindGameObjectWithTag("openscroll");
         bool dis = openscroll.GetComponent<OpenScroll>().display;
@@ -37,7 +54,10 @@ public class Rune : MonoBehaviour
         else
         {
             this.GetComponent<Renderer>().enabled = true;
+            
         }
+
+        
 
     }
 
@@ -53,12 +73,30 @@ public class Rune : MonoBehaviour
         transform.position = pos;
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    public bool IsColliding(GameObject obj)
     {
+        v3 n_pos = obj.transform.position;
+        v3 mypos = this.transform.position;
+        v3 diff = new v3(0, 0, 0);
         
-        if(col.gameObject.tag == "rune")
+        diff.x = Math.Abs(n_pos.x - mypos.x);
+        diff.y = Math.Abs(n_pos.y - mypos.y);
+
+        if(diff.x <0.5 && diff.y < 0.5 && diff.x >0 && diff.y > 0)
         {
-            Debug.Log("OnCollisionEnter2D");
-        } 
+            //Debug.Log("TEST");
+            //Debug.Log(n_pos);
+            //Debug.Log(diff);
+
+            return true;
+        }
+
+        
+        return false;
+    }
+
+    void SelfDestruct(GameObject _obj)
+    {
+        Destroy(_obj);
     }
 }

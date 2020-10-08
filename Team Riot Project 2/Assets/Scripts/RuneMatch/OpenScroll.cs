@@ -6,11 +6,12 @@ using UnityEngine;
 using v3 = UnityEngine.Vector3;
 public class OpenScroll : MonoBehaviour
 {
-    List<GameObject> runes;
+
     public bool display;
     GameObject[] sprites;
     UnityEngine.Object[] runetext;
     UnityEngine.Object[] lettertext;
+    public bool mazeWon = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,10 @@ public class OpenScroll : MonoBehaviour
         this.tag = "openscroll";
         //Debug.Log(lettertext[0].name);
         sprites = new GameObject[runetext.Length];
-        BuildMatch();
+        if(mazeWon == false)
+        {
+            BuildMatch();
+        }
     }
 
     // Update is called once per frame
@@ -28,11 +32,22 @@ public class OpenScroll : MonoBehaviour
         if(display == false)
         {
             this.GetComponent<Renderer>().enabled = false;
+            
+
         }
         else
         {
             this.GetComponent<Renderer>().enabled = true;
+            GameObject[] runes = GameObject.FindGameObjectsWithTag("rune");
+            if (runes.Length == 0 && mazeWon == false)
+            {
+                //Debug.Log("DONE");
+                mazeWon = true;
+                display = false;
+            }
         }
+
+        
     }
 
     void BuildMatch()
@@ -64,7 +79,7 @@ public class OpenScroll : MonoBehaviour
             gobj.AddComponent<BoxCollider2D>().size = new Vector2(1, 1);
             gobj.AddComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             gobj.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
-            gobj.AddComponent<Rune>();
+            gobj.AddComponent<Rune>().answer = idx.ToString();
             gobj.tag = "rune";
             gobj.name = runetext[idx].name;
             names.Add(runetext[idx].name);
@@ -108,7 +123,7 @@ public class OpenScroll : MonoBehaviour
                     obj.AddComponent<BoxCollider2D>().size = new Vector2(1, 1);
                     obj.AddComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
                     obj.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
-                    obj.AddComponent<Rune>();
+                    obj.AddComponent<Rune>().answer = u.ToString();
                     obj.name = u.ToString();
                     obj.tag = "rune";
                     //obj.AddComponent<TextMesh>().text = names[i];
