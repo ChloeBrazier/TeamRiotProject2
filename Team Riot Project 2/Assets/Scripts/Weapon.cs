@@ -24,7 +24,7 @@ public class Weapon : MonoBehaviour
     private void OnMouseDown()
     {
         Debug.Log("Clicking on Weapon");
-        if(PlayerManager.instance.currentTool == enchantments[0])
+        if(PlayerManager.instance.currentTool == enchantments[0] && PlayerManager.instance.currentMinigame == null)
         {
             PlayerManager.instance.StartMinigame(PlayerManager.instance.currentTool);
         }

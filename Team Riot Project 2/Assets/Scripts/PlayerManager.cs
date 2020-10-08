@@ -20,6 +20,9 @@ public class PlayerManager : MonoBehaviour
     //list of prefabs for minigames
     public List<GameObject> minigames;
 
+    private int weaponsCompleted = 0;
+    public GameObject currentMinigame;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,14 +50,22 @@ public class PlayerManager : MonoBehaviour
         {
             case PlayerTool.Lockpick:
                 newMinigame = minigames[1];
-                Instantiate(newMinigame);
+                currentMinigame = Instantiate(newMinigame);
                 break;
             case PlayerTool.Loupe:
                 newMinigame = minigames[0];
-                Instantiate(newMinigame);
+                currentMinigame = Instantiate(newMinigame);
                 break;
             case PlayerTool.Eyepiece:
+                newMinigame = minigames[2];
+                currentMinigame = Instantiate(newMinigame);
                 break;
         }
+    }
+
+    public void EndMinigame()
+    {
+        weaponsCompleted++;
+        Destroy(currentMinigame);
     }
 }

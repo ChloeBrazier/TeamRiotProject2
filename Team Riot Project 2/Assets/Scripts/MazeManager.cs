@@ -16,6 +16,7 @@ public class MazeManager : MonoBehaviour
         //get a random number and spawn the endpoint of the maze
         int mazeNum = Random.Range(0, 3);
         GameObject mazeEnd = Instantiate(endPrefab);
+        mazeEnd.transform.SetParent(transform);
         mazeEnd.transform.position = endLocations[mazeNum].position;
     }
 

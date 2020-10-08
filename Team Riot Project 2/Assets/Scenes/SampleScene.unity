@@ -1313,6 +1313,7 @@ MonoBehaviour:
   minigames:
   - {fileID: 1881318899924283737, guid: c6099091e3b6c414689c428079487731, type: 3}
   - {fileID: 5210879829687218924, guid: 3e336b7f54bd56d438bde9698004e51e, type: 3}
+  - {fileID: 4785530690277017569, guid: bbe3dfaa547679348866479c66d1bd88, type: 3}
 --- !u!4 &1781204931
 Transform:
   m_ObjectHideFlags: 0
