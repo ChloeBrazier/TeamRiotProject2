@@ -22,5 +22,6 @@ public class MagnifyingGlassControl : MonoBehaviour
     public void Click()
     {
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+        PlayerManager.instance.currentTool = PlayerTool.Loupe;
     }
 }

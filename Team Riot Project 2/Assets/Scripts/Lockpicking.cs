@@ -25,6 +25,9 @@ public class Lockpicking : MonoBehaviour
 
     void Start()
     {
+        //set cam
+        cam = Camera.main;
+
         //just calculating sweetspot variables
         difficultyArc = 10 * Random.Range(3, 5);
         sweetSpotCenter=Random.Range(rightBound + (difficultyArc/2), leftBound - (difficultyArc / 2));

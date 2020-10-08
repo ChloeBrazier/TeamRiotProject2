@@ -22,5 +22,6 @@ public class LockPickControl : MonoBehaviour
     public void Click()
     {
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+        PlayerManager.instance.currentTool = PlayerTool.Lockpick;
     }
 }
