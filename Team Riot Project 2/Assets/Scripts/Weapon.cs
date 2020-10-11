@@ -17,7 +17,7 @@ public class Weapon : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
 
-        //give this weapon a randomized enchantment
+        //give this weapon randomized enchantments
         int randEnchantment = Random.Range(0, 3);
         switch (randEnchantment)
         {
@@ -27,7 +27,7 @@ public class Weapon : MonoBehaviour
                 break;
             case 1:
                 enchantments.Add(PlayerTool.Loupe);
-                spriteRenderer.color = new Color(124, 55, 189, 1.0f);
+                spriteRenderer.color = new Color32(124, 55, 189, 255);
                 break;
             case 2:
                 enchantments.Add(PlayerTool.Eyepiece);
