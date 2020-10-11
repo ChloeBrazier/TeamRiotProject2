@@ -44,6 +44,8 @@ public class OpenScroll : MonoBehaviour
                 //Debug.Log("DONE");
                 mazeWon = true;
                 display = false;
+                Debug.Log("Finished rune matching");
+                PlayerManager.instance.EndMinigame();
                 Destroy(this.gameObject);
             }
         }

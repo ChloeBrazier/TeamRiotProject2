@@ -20,7 +20,6 @@ public class PlayerManager : MonoBehaviour
     //list of prefabs for minigames
     public List<GameObject> minigames;
 
-    private int weaponsCompleted = 0;
     public GameObject currentMinigame;
 
     // Start is called before the first frame update
@@ -39,7 +38,12 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //unequip current tool if the player right-clicks
+        if(Input.GetKeyDown(KeyCode.Mouse1) && currentTool != PlayerTool.Unequipped)
+        {
+            currentTool = PlayerTool.Unequipped;
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        }
     }
 
     public void StartMinigame(PlayerTool tool)
@@ -65,7 +69,7 @@ public class PlayerManager : MonoBehaviour
 
     public void EndMinigame()
     {
-        weaponsCompleted++;
+        LevelManager.instance.weaponsCompleted++;
         Destroy(currentMinigame);
     }
 }

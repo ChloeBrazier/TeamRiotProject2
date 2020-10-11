@@ -4,15 +4,36 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    //weapon's enchantments
     public List<PlayerTool> enchantments;
+
+    //sprite renderer
+    private SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
-        int randEnchantment = Random.Range(0, 3);
+        //save sprite renderer component
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
-        //give this weapon a maze enchantment
-        enchantments.Add(PlayerTool.Lockpick);
+
+        //give this weapon a randomized enchantment
+        int randEnchantment = Random.Range(0, 3);
+        switch (randEnchantment)
+        {
+            case 0:
+                enchantments.Add(PlayerTool.Lockpick);
+                spriteRenderer.color = Color.red;
+                break;
+            case 1:
+                enchantments.Add(PlayerTool.Loupe);
+                spriteRenderer.color = new Color(124, 55, 189, 1.0f);
+                break;
+            case 2:
+                enchantments.Add(PlayerTool.Eyepiece);
+                spriteRenderer.color = Color.blue;
+                break;
+        }
     }
 
     // Update is called once per frame
