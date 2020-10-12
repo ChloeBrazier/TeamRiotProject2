@@ -26,6 +26,9 @@ public class PlayerManager : MonoBehaviour
     //use to track the current minigame being played
     public GameObject currentMinigame;
 
+    public bool tutorial = false;
+
+    List<int> toolCount = new List<int>();
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +50,20 @@ public class PlayerManager : MonoBehaviour
         {
             UnequipTool();
         }
+
+        int amt = 0;
+        for(int i = 0; i < toolCount.Count; i++)
+        {
+            if(toolCount[i] == i)
+            {
+                amt++;
+            }
+        }
+        if(amt == 3)
+        {
+            Debug.Log("Tutorial Complete");
+            tutorial = true;
+        }
     }
 
     public void StartMinigame(PlayerTool tool)
@@ -56,19 +73,22 @@ public class PlayerManager : MonoBehaviour
 
         //start new minigame
         GameObject newMinigame;
-
+        
         switch (tool)
         {
             case PlayerTool.Lockpick:
                 newMinigame = minigames[1];
+                toolCount.Add(1);
                 currentMinigame = Instantiate(newMinigame);
                 break;
             case PlayerTool.Loupe:
                 newMinigame = minigames[0];
+                toolCount.Add(0);
                 currentMinigame = Instantiate(newMinigame);
                 break;
             case PlayerTool.Eyepiece:
                 newMinigame = minigames[2];
+                toolCount.Add(2);
                 currentMinigame = Instantiate(newMinigame);
                 break;
         }

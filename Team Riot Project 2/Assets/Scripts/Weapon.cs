@@ -9,7 +9,7 @@ public class Weapon : MonoBehaviour
 
     //sprite renderer
     private SpriteRenderer spriteRenderer;
-
+    bool tutorial = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,35 +19,60 @@ public class Weapon : MonoBehaviour
 
         //give this weapon randomized enchantments
         int randEnchantment = Random.Range(0, 3);
-        switch (randEnchantment)
+        if(tutorial == false)
         {
-            case 0:
-                enchantments.Add(PlayerTool.Lockpick);
-                spriteRenderer.color = Color.red;
-                break;
-            case 1:
-                enchantments.Add(PlayerTool.Loupe);
-                spriteRenderer.color = new Color32(124, 55, 189, 255);
-                break;
-            case 2:
-                enchantments.Add(PlayerTool.Eyepiece);
-                spriteRenderer.color = Color.blue;
-                break;
+            enchantments.Add(PlayerTool.Lockpick);
+            enchantments.Add(PlayerTool.Loupe);
+            enchantments.Add(PlayerTool.Eyepiece);
         }
+        else
+        {
+            switch (randEnchantment)
+            {
+                case 0:
+                    enchantments.Add(PlayerTool.Lockpick);
+                    spriteRenderer.color = Color.red;
+                    break;
+                case 1:
+                    enchantments.Add(PlayerTool.Loupe);
+                    spriteRenderer.color = new Color32(124, 55, 189, 255);
+                    break;
+                case 2:
+                    enchantments.Add(PlayerTool.Eyepiece);
+                    spriteRenderer.color = Color.blue;
+                    break;
+            }
+        }
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (PlayerManager.instance.currentMinigame == null)
+        {
+            tutorial = PlayerManager.instance.tutorial;
+        }
     }
 
     private void OnMouseDown()
     {
         Debug.Log("Clicking on Weapon");
-        if(PlayerManager.instance.currentTool == enchantments[0] && PlayerManager.instance.currentMinigame == null)
+        //Debug.Log(enchantments[0].ToString());
+        if(tutorial == false)
         {
-            PlayerManager.instance.StartMinigame(PlayerManager.instance.currentTool);
+            if (PlayerManager.instance.currentMinigame == null)
+            {
+                PlayerManager.instance.StartMinigame(PlayerManager.instance.currentTool);
+            }
+        }
+        else
+        {
+            if (PlayerManager.instance.currentTool == enchantments[0] && PlayerManager.instance.currentMinigame == null)
+            {
+                PlayerManager.instance.StartMinigame(PlayerManager.instance.currentTool);
+            }
         }
     }
 }
