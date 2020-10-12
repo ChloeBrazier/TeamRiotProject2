@@ -1459,6 +1459,7 @@ MonoBehaviour:
   - {fileID: 1132037642}
   - {fileID: 1259715835}
   currentMinigame: {fileID: 0}
+  tutorial: 0
 --- !u!4 &1781204931
 Transform:
   m_ObjectHideFlags: 0
@@ -1504,6 +1505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponPrefab: {fileID: 2944027039539079029, guid: 1abffe5089e6ae14f9a6c5f4665af82c,
     type: 3}
+  activeWeapon: {fileID: 0}
   weaponLocList:
   - {fileID: 1363999796}
   - {fileID: 1957453946}

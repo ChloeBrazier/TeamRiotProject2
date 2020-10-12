@@ -62,7 +62,9 @@ public class Weapon : MonoBehaviour
             if (PlayerManager.instance.currentMinigame == null)
             {
                 tutorial = PlayerManager.instance.tutorial;
-                PlayerManager.instance.StartMinigame(PlayerManager.instance.currentTool);
+                PlayerTool pt = PlayerManager.instance.currentTool;
+                PlayerManager.instance.StartMinigame(pt);
+                
             }
         }
         else
