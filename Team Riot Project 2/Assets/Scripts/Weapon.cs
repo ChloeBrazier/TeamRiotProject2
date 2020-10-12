@@ -50,10 +50,7 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerManager.instance.currentMinigame == null)
-        {
-            tutorial = PlayerManager.instance.tutorial;
-        }
+        
     }
 
     private void OnMouseDown()
@@ -64,6 +61,7 @@ public class Weapon : MonoBehaviour
         {
             if (PlayerManager.instance.currentMinigame == null)
             {
+                tutorial = PlayerManager.instance.tutorial;
                 PlayerManager.instance.StartMinigame(PlayerManager.instance.currentTool);
             }
         }
@@ -71,6 +69,7 @@ public class Weapon : MonoBehaviour
         {
             if (PlayerManager.instance.currentTool == enchantments[0] && PlayerManager.instance.currentMinigame == null)
             {
+                tutorial = PlayerManager.instance.tutorial;
                 PlayerManager.instance.StartMinigame(PlayerManager.instance.currentTool);
             }
         }

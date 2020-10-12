@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum PlayerTool
@@ -51,25 +52,32 @@ public class PlayerManager : MonoBehaviour
             UnequipTool();
         }
 
-        int amt = 0;
-        for(int i = 0; i < toolCount.Count; i++)
+        //Checks each unique case for minigame and looks for distinct amount to see if we have played them all. 
+        if(tutorial == false)
         {
-            if(toolCount[i] == i)
+            int amt = 0;
+            Debug.Log(toolCount.Count);
+            for (int i = 0; i < toolCount.Count; i++)
             {
-                amt++;
+                Debug.Log(toolCount[i].ToString());
+                if (toolCount.Contains(i))
+                {
+                    amt++;
+
+                }
             }
-        }
-        if(amt == 3)
-        {
-            Debug.Log("Tutorial Complete");
-            tutorial = true;
+            if (amt == 3)
+            {
+                Debug.Log("Tutorial Complete");
+                tutorial = true;
+            }
         }
     }
 
     public void StartMinigame(PlayerTool tool)
     {
         //hide tools in UI
-        ToggleUI();
+        //ToggleUI();
 
         //start new minigame
         GameObject newMinigame;
@@ -109,7 +117,7 @@ public class PlayerManager : MonoBehaviour
         Destroy(currentMinigame);
 
         //show tools in UI
-        ToggleUI();
+        //ToggleUI();
     }
 
     public void UnequipTool()
