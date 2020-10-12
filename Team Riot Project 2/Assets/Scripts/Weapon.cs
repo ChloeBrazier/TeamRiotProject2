@@ -19,13 +19,14 @@ public class Weapon : MonoBehaviour
 
         //give this weapon randomized enchantments
         int randEnchantment = Random.Range(0, 3);
+        //tutorial checks. Adding each minigame to Tool list
         if(tutorial == false)
         {
             enchantments.Add(PlayerTool.Lockpick);
             enchantments.Add(PlayerTool.Loupe);
             enchantments.Add(PlayerTool.Eyepiece);
         }
-        else
+        else //normal case
         {
             switch (randEnchantment)
             {
@@ -56,18 +57,19 @@ public class Weapon : MonoBehaviour
     private void OnMouseDown()
     {
         Debug.Log("Clicking on Weapon");
-        //Debug.Log(enchantments[0].ToString());
+        //tutorial check
         if(tutorial == false)
         {
             if (PlayerManager.instance.currentMinigame == null)
             {
+                //updating tutorial value from manager
                 tutorial = PlayerManager.instance.tutorial;
-                PlayerTool pt = PlayerManager.instance.currentTool;
-                PlayerManager.instance.StartMinigame(pt);
+                PlayerTool minigame = PlayerManager.instance.currentTool;
+                PlayerManager.instance.StartMinigame(minigame);
                 
             }
         }
-        else
+        else //normal case
         {
             if (PlayerManager.instance.currentTool == enchantments[0] && PlayerManager.instance.currentMinigame == null)
             {

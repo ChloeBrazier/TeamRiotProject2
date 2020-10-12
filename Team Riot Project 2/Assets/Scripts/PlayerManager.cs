@@ -55,21 +55,23 @@ public class PlayerManager : MonoBehaviour
         //Checks each unique case for minigame and looks for distinct amount to see if we have played them all. 
         if(tutorial == false)
         {
+            //checker for number of unique tools selected
             int amt = 0;
-            Debug.Log(toolCount.Count);
+            //Debug.Log(toolCount.Count);
             for (int i = 0; i < toolCount.Count; i++)
             {
-                Debug.Log(toolCount[i].ToString());
-                if (toolCount.Contains(i))
+                //Debug.Log(toolCount[i].ToString());
+                if (toolCount.Contains(i))//if we have any of the following unique tools by index
                 {
+                    //we increase the tool amount
                     amt++;
 
                 }
             }
-            if (amt == 3)
+            if (amt == 3) //if we hit the max //for right now 3 
             {
                 Debug.Log("Tutorial Complete");
-                tutorial = true;
+                tutorial = true; //value sent to weapons
             }
         }
     }
