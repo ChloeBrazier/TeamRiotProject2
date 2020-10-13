@@ -31,6 +31,8 @@ public class LevelManager : MonoBehaviour
     public Text quotaUI;
     public Text timerUI;
 
+    private bool levelEnded = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,7 +66,7 @@ public class LevelManager : MonoBehaviour
             }
 
 
-            //TODO: update UI to show time left in level
+            //update UI to show time left in level
             timerUI.text = "Time: " + ((int)levelTick + 1);
 
             //decrement level time
@@ -72,9 +74,23 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            //TODO: end the level
-            Debug.Log("Clock Over");
+            if(levelEnded == false)
+            {
+                //TODO: end the level
+                //show 0 on timer
+                timerUI.text = "Time: " + 0;
+
+                //toggle UI
+                PlayerManager.instance.ToggleUI();
+                Debug.Log("Clock Over");
+                levelEnded = true;
+            }
         }
+    }
+
+    public void EndLevel()
+    {
+
     }
 
     public IEnumerator MoveWeapon(GameObject weapon, Transform endLocation)
