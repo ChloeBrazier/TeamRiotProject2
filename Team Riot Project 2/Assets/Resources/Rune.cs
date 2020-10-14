@@ -5,7 +5,9 @@ using UnityEngine;
 using v3 = UnityEngine.Vector3;
 public class Rune : MonoBehaviour
 {
+    //scroll position
     private Vector3 pos;
+    //if we're dragging 
     private bool isDragging;
     public string answer;
     private float z;
@@ -16,7 +18,7 @@ public class Rune : MonoBehaviour
     {
         pos = this.transform.position;
         this.z = this.pos.z;
-        // pos.z = -7;
+        // Rescale
         Vector3 theScale = this.transform.localScale * 0.8f;
         this.transform.localScale = theScale;
     }
@@ -26,13 +28,16 @@ public class Rune : MonoBehaviour
     {
         if (isDragging)
         {
+            //mouse position and drag movement 
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             transform.Translate(mousePosition);
             GameObject[] runes = GameObject.FindGameObjectsWithTag("rune");
+            //check all runes 
             foreach (var rune in runes)
             {
-                if (IsColliding(rune))
+                if (IsColliding(rune)) // if we're colliding
                 {
+                    //checking the answer for each letter if they're equal
                     string a1 = rune.GetComponent<Rune>().answer;
                     if(a1 == answer)
                     {
@@ -41,7 +46,7 @@ public class Rune : MonoBehaviour
                         Debug.Log("FOUND");
                         //mmDebug.Log(answer);
                     }
-                    else
+                    else 
                     {
                         transform.position = pos;
                     }
@@ -51,7 +56,7 @@ public class Rune : MonoBehaviour
         }
         GameObject openscroll = GameObject.FindGameObjectWithTag("openscroll");
         bool dis = openscroll.GetComponent<OpenScroll>().display;
-        if (dis == false)
+        if (dis == false) //determines display by the scroll
         {
             this.GetComponent<Renderer>().enabled = false;
         }
@@ -64,7 +69,7 @@ public class Rune : MonoBehaviour
         
 
     }
-
+    // if we're dragging
     public void OnMouseDown()
     {
         isDragging = true;
@@ -76,7 +81,7 @@ public class Rune : MonoBehaviour
         pos.z = -7;
         transform.position = pos;
     }
-
+    //checks collision for 2D sprites 
     public bool IsColliding(GameObject obj)
     {
         v3 n_pos = obj.transform.position;
@@ -88,9 +93,7 @@ public class Rune : MonoBehaviour
 
         if(diff.x <0.5 && diff.y < 0.5 && diff.x >0 && diff.y > 0)
         {
-            //Debug.Log("TEST");
-            //Debug.Log(n_pos);
-            //Debug.Log(diff);
+            
 
             return true;
         }
@@ -98,6 +101,7 @@ public class Rune : MonoBehaviour
         
         return false;
     }
+
 
     void SelfDestruct(GameObject _obj)
     {

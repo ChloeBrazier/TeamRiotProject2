@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 3687513095450363566}
   m_Layer: 5
   m_Name: forward
-  m_TagString: Untagged
+  m_TagString: forward
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -209,6 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a46619fe851f2e4d928f61a7cf6aa03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialBox: {fileID: 0}
 --- !u!114 &3687513095450363566
 MonoBehaviour:
   m_ObjectHideFlags: 0
