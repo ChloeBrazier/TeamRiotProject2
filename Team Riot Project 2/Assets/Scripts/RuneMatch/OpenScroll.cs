@@ -35,8 +35,11 @@ public class OpenScroll : MonoBehaviour
         if(tutorial == false)
         {
             runetut = Instantiate(runetut, textpos, Quaternion.identity);
-            runetut.GetComponentInChildren<Text>().text = "TESTING";
+            //runetut.GetComponentInChildren<Text>().text = "TESTING";
             runetut.transform.parent = gameUI.transform;
+            runetut.AddComponent<RuneTutorial>();
+            runetut.GetComponent<RuneTutorial>().PushText("New test");
+            runetut.GetComponent<RuneTutorial>().PushText("Another one");
             //Debug.Log(gameUI);
             //Debug.Log(runetut);
         }

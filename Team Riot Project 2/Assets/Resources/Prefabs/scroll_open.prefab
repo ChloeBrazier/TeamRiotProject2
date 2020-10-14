@@ -94,6 +94,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   display: 0
-  runetut: {fileID: 5825272267624598229, guid: 597ca7ed7e54f124a950ae6b6e9f6d61, type: 3}
+  runetut: {fileID: 8107260050273481683, guid: b014119ee7377bc44bec4c709797256c, type: 3}
   gameUI: {fileID: 6832243460194361433, guid: b956d64ae8cf2ae4ebb6a14b02c341bc, type: 3}
   mazeWon: 0

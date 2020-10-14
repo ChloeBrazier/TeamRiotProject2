@@ -10,6 +10,8 @@ TagManager:
   - playerManager
   - forward
   - backward
+  - esc
+  - tutorialBox
   layers:
   - Default
   - TransparentFX
