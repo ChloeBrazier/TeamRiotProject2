@@ -52,23 +52,23 @@ public class OpenScroll : MonoBehaviour
     {
 
         
-
+        //disabled display
         if (display == false)
         {
             this.GetComponent<Renderer>().enabled = false;
             
 
         }
-        else
+        else //enabled display
         {
-            //tutorial = playerManager.GetComponent<PlayerManager>().tutorial;
+            //tutorial run 
             if (mazeBuilt == false && tutorial == false)
             {
                 Debug.Log("TUTORIAL RUN");
                 BuildMatch();
                 mazeBuilt = true;
                 
-            }
+            } //normal run 
             else if (mazeBuilt == false && tutorial == true)
             {
                 Debug.Log("NORMAL RUN");
@@ -83,8 +83,10 @@ public class OpenScroll : MonoBehaviour
                 mazeBuilt = false;
                 mazeWon = true;
                 display = false;
+                
                 //Debug.Log("Finished rune matching");
                 PlayerManager.instance.EndMinigame();
+                Destroy(runetut);
                 Destroy(this.gameObject);
             }
         }
@@ -92,8 +94,10 @@ public class OpenScroll : MonoBehaviour
         
     }
 
+    //builds matching game for player 
     void BuildMatch()
     {
+        //scroll dimensions 
         float width = this.GetComponent<SpriteRenderer>().bounds.size.x;
         float height = this.GetComponent<SpriteRenderer>().bounds.size.y;
         var rand = new System.Random();
@@ -101,22 +105,23 @@ public class OpenScroll : MonoBehaviour
         int idx = 0;
         int wordlength = rand.Next(3, 6);
         v3 pos = this.transform.position;
+        //list pair, names, and list index 
         List<GameObject> pair = new List<GameObject>();
         List<String> names = new List<String>();
         List<int> index = new List<int>();
         for (int i = 0; i < wordlength; i++)
         {
-            //select random rune 
-            //var idx = rand.Next(1,26);
             
-
+            
+            //getting unique letters 
             while(index.Contains(idx) == true)
                 idx = rand.Next(1, 26);
-
+            //save the index 
             index.Add(idx);
+            //get texture for game object
             Texture2D tex = (Texture2D)runetext[idx];
             GameObject gobj = new GameObject();
-            
+            //create sprite
             gobj.AddComponent<SpriteRenderer>().sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0, 0));
             gobj.AddComponent<BoxCollider2D>().size = new Vector2(1, 1);
             gobj.AddComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;

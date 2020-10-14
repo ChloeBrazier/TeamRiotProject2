@@ -104,14 +104,14 @@ public class PlayerManager : MonoBehaviour
 
     public void EndMinigame()
     {
-
+        //check to see if we are done with tutorial for all games 
         tutorial = TutorialCheck(1);
         //start moving weapon offscreen //When tutorial is done 
         if (tutorial == true)
         {
             StartCoroutine(LevelManager.instance.MoveWeapon(LevelManager.instance.activeWeapon, LevelManager.instance.weaponLocList[2]));
         }
-        else
+        else //normal case 
         {
             StartCoroutine(LevelManager.instance.MoveWeapon(LevelManager.instance.activeWeapon, LevelManager.instance.weaponLocList[1]));
         }
@@ -143,7 +143,7 @@ public class PlayerManager : MonoBehaviour
 
                 }
             }
-            if (amt == _num) //if we hit the max //for right now 2, should be 3
+            if (amt == _num) //if we hit the total number of mini games 
             {
 
                 Debug.Log("Tutorial Complete");

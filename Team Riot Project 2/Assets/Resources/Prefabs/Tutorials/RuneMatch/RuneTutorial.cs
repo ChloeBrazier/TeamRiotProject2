@@ -18,11 +18,22 @@ public class RuneTutorial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (old != idx && idx >= 0)
+        //gameObject.GetComponentInChildren<Text>().text = textContent[idx];
+        if(idx >= textContent.Count)
+        {
+            idx = textContent.Count - 1;
+        }
+        if (idx < 0)
+        {
+            idx = 0;
+        }
+        if (old != idx)
         {
             gameObject.GetComponentInChildren<Text>().text = textContent[idx];
             old = idx;
         }
+        Debug.Log(idx);
+        //Debug.Log(textContent.Count);
         //gameObject.GetComponentInChildren<Text>().text = "TESTING";
     }
 

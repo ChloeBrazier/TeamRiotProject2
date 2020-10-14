@@ -40,13 +40,16 @@ public class PageButton : MonoBehaviour
             Destroy(backward);
             Destroy(gameObject);
         }
-
-        if(tagName == "forward")
+        
+        if (tagName == "forward")
         {
+      
+          
             tutorialBox.GetComponent<RuneTutorial>().idx++;
         }
         if (tagName == "backward")
         {
+           
             tutorialBox.GetComponent<RuneTutorial>().idx--;
         }
 
