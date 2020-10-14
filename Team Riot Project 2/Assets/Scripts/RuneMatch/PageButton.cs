@@ -20,7 +20,7 @@ public class PageButton : MonoBehaviour
         
     }
 
-    void Clicked()
+    public void Clicked()
     {
         Debug.Log("Clicked");
     }
