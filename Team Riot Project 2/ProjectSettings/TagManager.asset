@@ -6,6 +6,10 @@ TagManager:
   tags:
   - rune
   - openscroll
+  - interface
+  - playerManager
+  - forward
+  - backward
   layers:
   - Default
   - TransparentFX

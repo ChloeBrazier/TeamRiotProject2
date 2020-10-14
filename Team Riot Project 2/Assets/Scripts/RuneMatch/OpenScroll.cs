@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.UI;
 using v3 = UnityEngine.Vector3;
 public class OpenScroll : MonoBehaviour
 {
@@ -11,25 +12,45 @@ public class OpenScroll : MonoBehaviour
     GameObject[] sprites;
     UnityEngine.Object[] runetext;
     UnityEngine.Object[] lettertext;
+    bool mazeBuilt = false;
+    public GameObject runetut;
+    Button textbutton;
+    public GameObject gameUI;
+    GameObject playerManager;
     public bool mazeWon = false;
+    bool tutorial;
     // Start is called before the first frame update
     void Start()
     {
         runetext = Resources.LoadAll("runes", typeof(Texture2D));
         lettertext = Resources.LoadAll("Letters", typeof(Texture2D));
+        playerManager = GameObject.FindGameObjectWithTag("playerManager");
+        gameUI = GameObject.FindGameObjectWithTag("interface");
         this.tag = "openscroll";
         //Debug.Log(lettertext[0].name);
         sprites = new GameObject[runetext.Length];
-        if(mazeWon == false)
+        tutorial = playerManager.GetComponent<PlayerManager>().tutorial;
+        //gameUI = GameObject.FindGameObjectWithTag("interface");
+        v3 textpos = new v3(151, 236, 0);
+        if(tutorial == false)
         {
-            BuildMatch();
+            runetut = Instantiate(runetut, textpos, Quaternion.identity);
+            runetut.GetComponentInChildren<Text>().text = "TESTING";
+            runetut.transform.parent = gameUI.transform;
+            //Debug.Log(gameUI);
+            //Debug.Log(runetut);
         }
+        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(display == false)
+
+        
+
+        if (display == false)
         {
             this.GetComponent<Renderer>().enabled = false;
             
@@ -37,14 +58,29 @@ public class OpenScroll : MonoBehaviour
         }
         else
         {
+            //tutorial = playerManager.GetComponent<PlayerManager>().tutorial;
+            if (mazeBuilt == false && tutorial == false)
+            {
+                Debug.Log("TUTORIAL RUN");
+                BuildMatch();
+                mazeBuilt = true;
+                
+            }
+            else if (mazeBuilt == false && tutorial == true)
+            {
+                Debug.Log("NORMAL RUN");
+                BuildMatch();
+                mazeBuilt = true;
+            }
             this.GetComponent<Renderer>().enabled = true;
             GameObject[] runes = GameObject.FindGameObjectsWithTag("rune");
             if (runes.Length == 0 && mazeWon == false)
             {
                 //Debug.Log("DONE");
+                mazeBuilt = false;
                 mazeWon = true;
                 display = false;
-                Debug.Log("Finished rune matching");
+                //Debug.Log("Finished rune matching");
                 PlayerManager.instance.EndMinigame();
                 Destroy(this.gameObject);
             }
@@ -146,5 +182,13 @@ public class OpenScroll : MonoBehaviour
 
         //Debug.Log(pairlength);
         //Debug.Log(runePos.y);
+    }
+
+    public bool SetTutorial
+    {
+        set
+        {
+            tutorial = value;
+        }
     }
 }

@@ -11,7 +11,7 @@ public class Rune : MonoBehaviour
     private float z;
     public float dragSpeed = 1f;
     Vector3 lastMousePos;
-
+    public GameObject[] tutorialPages = new GameObject[5];
     void Start()
     {
         pos = this.transform.position;

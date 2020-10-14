@@ -71,11 +71,17 @@ public class Weapon : MonoBehaviour
         }
         else //normal case
         {
-            if (PlayerManager.instance.currentTool == enchantments[0] && PlayerManager.instance.currentMinigame == null)
+            //alternative
+            if (PlayerManager.instance.currentMinigame == null)
             {
                 tutorial = PlayerManager.instance.tutorial;
                 PlayerManager.instance.StartMinigame(PlayerManager.instance.currentTool);
             }
+            /*if (PlayerManager.instance.currentTool == enchantments[0] && PlayerManager.instance.currentMinigame == null)
+            {
+                tutorial = PlayerManager.instance.tutorial;
+                PlayerManager.instance.StartMinigame(PlayerManager.instance.currentTool);
+            }*/
         }
     }
 }

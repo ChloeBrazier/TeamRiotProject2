@@ -52,34 +52,13 @@ public class PlayerManager : MonoBehaviour
             UnequipTool();
         }
 
-        //Checks each unique case for minigame and looks for distinct amount to see if we have played them all. 
-        if(tutorial == false)
-        {
-            //checker for number of unique tools selected
-            int amt = 0;
-            //Debug.Log(toolCount.Count);
-            for (int i = 0; i < toolCount.Count; i++)
-            {
-                //Debug.Log(toolCount[i].ToString());
-                if (toolCount.Contains(i))//if we have any of the following unique tools by index
-                {
-                    //we increase the tool amount
-                    amt++;
-
-                }
-            }
-            if (amt == 3) //if we hit the max //for right now 3 
-            {
-                Debug.Log("Tutorial Complete");
-                tutorial = true; //value sent to weapons
-            }
-        }
+        
     }
 
     public void StartMinigame(PlayerTool tool)
     {
         //hide tools in UI
-        //ToggleUI();
+        ToggleUI();
 
         //start new minigame
         GameObject newMinigame;
@@ -109,9 +88,17 @@ public class PlayerManager : MonoBehaviour
 
     public void EndMinigame()
     {
-        //start moving weapon offscreen
-        StartCoroutine(LevelManager.instance.MoveWeapon(LevelManager.instance.activeWeapon, LevelManager.instance.weaponLocList[2]));
 
+        tutorial = TutorialCheck(1);
+        //start moving weapon offscreen //When tutorial is done 
+        if (tutorial == true)
+        {
+            StartCoroutine(LevelManager.instance.MoveWeapon(LevelManager.instance.activeWeapon, LevelManager.instance.weaponLocList[2]));
+        }
+        else
+        {
+            StartCoroutine(LevelManager.instance.MoveWeapon(LevelManager.instance.activeWeapon, LevelManager.instance.weaponLocList[1]));
+        }
         //increase weapons completed and close current minigame
         //TODO: support weapons with multiple enchantments
         LevelManager.instance.weaponsCompleted++;
@@ -119,7 +106,37 @@ public class PlayerManager : MonoBehaviour
         Destroy(currentMinigame);
 
         //show tools in UI
-        //ToggleUI();
+        ToggleUI();
+    }
+
+    private bool TutorialCheck(int _num)
+    {
+        //Checks each unique case for minigame and looks for distinct amount to see if we have played them all. 
+        if (tutorial == false)
+        {
+            //checker for number of unique tools selected
+            int amt = 0;
+            //Debug.Log(toolCount.Count);
+            for (int i = 0; i < toolCount.Count; i++)
+            {
+                //Debug.Log(toolCount[i].ToString());
+                if (toolCount.Contains(i) || toolCount.Contains(2))//if we have any of the following unique tools by index
+                {
+                    //we increase the tool amount
+                    amt++;
+
+                }
+            }
+            if (amt == _num) //if we hit the max //for right now 2, should be 3
+            {
+
+                Debug.Log("Tutorial Complete");
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void UnequipTool()

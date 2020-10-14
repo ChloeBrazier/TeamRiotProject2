@@ -7,7 +7,7 @@ public class ScrollTool : MonoBehaviour
 {
     public GameObject scroll;
     private GameObject openscroll = null;
-
+    bool tutorial;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +17,9 @@ public class ScrollTool : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        openscroll = GameObject.FindGameObjectWithTag("openscroll");
+        tutorial = GameObject.FindGameObjectWithTag("playerManager").GetComponent<PlayerManager>().tutorial;
+
     }
 
     void OnMouseUp()
@@ -39,8 +41,11 @@ public class ScrollTool : MonoBehaviour
         }
         else if (openscroll == null)
         {
+            Debug.Log("SPAWN SCROLL");
             openscroll = Instantiate(scroll, new v3(0, 0, -6), Quaternion.identity);
             openscroll.GetComponent<OpenScroll>().display = true;
+            Debug.Log(tutorial);
+            openscroll.GetComponent<OpenScroll>().SetTutorial = tutorial;
         }
 
             
