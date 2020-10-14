@@ -96,12 +96,16 @@ public class LevelManager : MonoBehaviour
     public IEnumerator MoveWeapon(GameObject weapon, Transform endLocation)
     {
         //vector from weapon to end location
-        Vector3 moveVec = endLocation.position - weapon.transform.position;
+        Vector2 startVec = weapon.transform.position;
+        Vector2 moveVec = endLocation.position - weapon.transform.position;
         moveVec = moveVec.normalized;
 
-        for(int i = 0; weapon.transform.position.x <= endLocation.position.x; i++)
+        float startTime = Time.time;
+
+        for(int i = 0; weapon.transform.position.x < endLocation.position.x; i++)
         {
-            weapon.transform.position += moveVec * 5 * Time.deltaTime;
+            //weapon.transform.position += (Vector3) moveVec * 5 * Time.deltaTime;
+            weapon.transform.position = new Vector2(Mathf.SmoothStep(startVec.x, endLocation.position.x, (Time.time - startTime)/1.5f), weapon.transform.position.y);
             yield return null;
         }
     }

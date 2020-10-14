@@ -16,12 +16,12 @@ public class DestroyWeapon : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.GetComponent<Weapon>())
+        if (collision.gameObject.GetComponent<Weapon>())
         {
             StopCoroutine("MoveWeapon");
-            Destroy(collision.gameObject, 0.7f);
+            Destroy(collision.gameObject, 1f);
         }
     }
 }
