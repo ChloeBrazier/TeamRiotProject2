@@ -23,13 +23,14 @@ public class LevelManager : MonoBehaviour
     public int weaponsCompleted = 0;
 
     //the amount of time the player has to complete the level and associated time values
-    private float levelTime = 60f;
+    private float levelTime = 10f;
     private float levelTick = 0;
 
     //UI elements
     public Text scoreUI;
     public Text quotaUI;
     public Text timerUI;
+    public Text endUI;
 
     private bool levelEnded = false;
 
@@ -77,20 +78,37 @@ public class LevelManager : MonoBehaviour
             if(levelEnded == false)
             {
                 //TODO: end the level
-                //show 0 on timer
-                timerUI.text = "Time: " + 0;
-
-                //toggle UI
-                PlayerManager.instance.ToggleUI();
-                Debug.Log("Clock Over");
-                levelEnded = true;
+                EndLevel();
             }
         }
     }
 
     public void EndLevel()
     {
+        //destroy current minigame if there's one active
+        if(PlayerManager.instance.currentMinigame != null)
+        {
+            Destroy(PlayerManager.instance.currentMinigame);
+        }
 
+        //show 0 on timer
+        timerUI.text = "Time: " + 0;
+
+        //hide main UI and show level end UI
+        PlayerManager.instance.ToggleUI(false);
+        endUI.enabled = true;
+        endUI.text = "Quota: " + weaponsNeeded + "\n\nWeapons Disenchanted: " + weaponsCompleted;
+        if(weaponsCompleted >= weaponsNeeded)
+        {
+            endUI.text += "\n\n Level Complete!";
+        }
+        else
+        {
+            endUI.text += "\n\n Game Over";
+        }
+
+        //set level end bool
+        levelEnded = true;
     }
 
     public IEnumerator MoveWeapon(GameObject weapon, Transform endLocation)

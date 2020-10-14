@@ -21,6 +21,9 @@ public class PlayerManager : MonoBehaviour
     //list of prefabs for minigames
     public List<GameObject> minigames;
 
+    //list of maze prefabs
+    public List<GameObject> mazes;
+
     //list of UI elements
     public List<GameObject> toolUI;
 
@@ -58,10 +61,10 @@ public class PlayerManager : MonoBehaviour
     public void StartMinigame(PlayerTool tool)
     {
         //hide tools in UI
-        ToggleUI();
+        ToggleUI(false);
 
         //start new minigame
-        GameObject newMinigame;
+        GameObject newMinigame = null;
         
         switch (tool)
         {
@@ -71,7 +74,20 @@ public class PlayerManager : MonoBehaviour
                 currentMinigame = Instantiate(newMinigame);
                 break;
             case PlayerTool.Loupe:
-                newMinigame = minigames[0];
+                //randomize which maze is spawned
+                int randMaze = Random.Range(0, 3);
+                switch(randMaze)
+                {
+                    case 0:
+                        newMinigame = mazes[0];
+                        break;
+                    case 1:
+                        newMinigame = mazes[1];
+                        break;
+                    case 2:
+                        newMinigame = mazes[2];
+                        break;
+                }
                 toolCount.Add(0);
                 currentMinigame = Instantiate(newMinigame);
                 break;
@@ -106,7 +122,7 @@ public class PlayerManager : MonoBehaviour
         Destroy(currentMinigame);
 
         //show tools in UI
-        ToggleUI();
+        ToggleUI(true);
     }
 
     private bool TutorialCheck(int _num)
@@ -145,11 +161,11 @@ public class PlayerManager : MonoBehaviour
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
 
-    public void ToggleUI()
+    public void ToggleUI(bool toggle)
     {
         foreach(GameObject tool in toolUI)
         {
-            tool.SetActive(!tool.activeSelf);
+            tool.SetActive(toggle);
         }
     }
 }
