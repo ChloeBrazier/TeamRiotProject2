@@ -614,6 +614,7 @@ MonoBehaviour:
   cursorTexture: {fileID: 2800000, guid: 9ed74e1d9f0bc2147be774127654f1da, type: 3}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
+  startPosition: {x: 0, y: 0}
 --- !u!114 &1132037646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1509,7 +1510,7 @@ GameObject:
   - component: {fileID: 1781204930}
   m_Layer: 0
   m_Name: PlayerManager
-  m_TagString: Untagged
+  m_TagString: playerManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1526,7 +1527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa572ffe0b5a37e499a798827f66b00c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTool: 0
+  currentTool: 3
   minigames:
   - {fileID: 1881318899924283737, guid: c6099091e3b6c414689c428079487731, type: 3}
   - {fileID: 5210879829687218924, guid: 3e336b7f54bd56d438bde9698004e51e, type: 3}
@@ -1593,6 +1594,7 @@ MonoBehaviour:
   - {fileID: 2062878353}
   weaponsNeeded: 10
   weaponsCompleted: 0
+  levelTime: 100
   scoreUI: {fileID: 656209993}
   quotaUI: {fileID: 1084304406}
   timerUI: {fileID: 1419901793}
@@ -1625,7 +1627,7 @@ GameObject:
   - component: {fileID: 1921507008}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: interface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -23,7 +23,7 @@ public class LevelManager : MonoBehaviour
     public int weaponsCompleted = 0;
 
     //the amount of time the player has to complete the level and associated time values
-    private float levelTime = 10f;
+    public float levelTime;
     private float levelTick = 0;
 
     //UI elements

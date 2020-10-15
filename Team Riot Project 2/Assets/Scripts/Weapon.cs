@@ -72,7 +72,7 @@ public class Weapon : MonoBehaviour
         else //normal case
         {
             //alternative
-            if (PlayerManager.instance.currentMinigame == null)
+            if (enchantments.Contains(PlayerManager.instance.currentTool) && PlayerManager.instance.currentMinigame == null)
             {
                 tutorial = PlayerManager.instance.tutorial;
                 PlayerManager.instance.StartMinigame(PlayerManager.instance.currentTool);

@@ -54,8 +54,6 @@ public class PlayerManager : MonoBehaviour
         {
             UnequipTool();
         }
-
-        
     }
 
     public void StartMinigame(PlayerTool tool)
@@ -136,11 +134,10 @@ public class PlayerManager : MonoBehaviour
             for (int i = 0; i < toolCount.Count; i++)
             {
                 //Debug.Log(toolCount[i].ToString());
-                if (toolCount.Contains(i) || toolCount.Contains(2))//if we have any of the following unique tools by index
+                if (toolCount.Contains(i))//if we have any of the following unique tools by index
                 {
                     //we increase the tool amount
                     amt++;
-
                 }
             }
             if (amt == _num) //if we hit the total number of mini games 
