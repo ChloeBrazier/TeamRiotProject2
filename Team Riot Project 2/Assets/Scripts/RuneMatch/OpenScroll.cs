@@ -31,17 +31,21 @@ public class OpenScroll : MonoBehaviour
         sprites = new GameObject[runetext.Length];
         tutorial = playerManager.GetComponent<PlayerManager>().tutorial;
         //gameUI = GameObject.FindGameObjectWithTag("interface");
-        v3 textpos = new v3(151, 236, 0);
+        v3 textpos = new v3(151, 275, 0);
         if(tutorial == false)
         {
             runetut = Instantiate(runetut, textpos, Quaternion.identity);
             //runetut.GetComponentInChildren<Text>().text = "TESTING";
             runetut.transform.parent = gameUI.transform;
             runetut.AddComponent<RuneTutorial>();
-            runetut.GetComponent<RuneTutorial>().PushText("New test");
-            runetut.GetComponent<RuneTutorial>().PushText("Another one");
-            //Debug.Log(gameUI);
-            //Debug.Log(runetut);
+            runetut.GetComponent<RuneTutorial>().PushText("Rune Matching Tutorial:\n\n\n" + " \nThis is one of the enchantment games" +
+                " you will be playing to disenchant a weapon.");
+            runetut.GetComponent<RuneTutorial>().PushText("Rune Matching Tutorial:\n\n\n" + "\nEach side of the scroll will have a set of runes to match with letters. " +
+                "Click and drag the correct rune with the letter");
+            runetut.GetComponent<RuneTutorial>().PushText("Rune Matching Tutorial:\n\n\n" + "\nUse trial and error to test the correct matching runes to disenchant the weapon.");
+
+                //Debug.Log(gameUI);
+                //Debug.Log(runetut);
         }
         
 
@@ -64,14 +68,14 @@ public class OpenScroll : MonoBehaviour
             //tutorial run 
             if (mazeBuilt == false && tutorial == false)
             {
-                Debug.Log("TUTORIAL RUN");
+                //Debug.Log("TUTORIAL RUN");
                 BuildMatch();
                 mazeBuilt = true;
                 
             } //normal run 
             else if (mazeBuilt == false && tutorial == true)
             {
-                Debug.Log("NORMAL RUN");
+                //Debug.Log("NORMAL RUN");
                 BuildMatch();
                 mazeBuilt = true;
             }
@@ -138,7 +142,6 @@ public class OpenScroll : MonoBehaviour
             
         }
         // index.Reverse();
-
         for (int i = 0; i < wordlength; i++)
         {
             int u = index[i];
@@ -151,12 +154,7 @@ public class OpenScroll : MonoBehaviour
         for (int i = 0; i < wordlength; i++)
         {
             //int pairlength = rand.Next(0, wordlength);
-            //var p = pair[i];
-            //Texture2D t2 = p.GetComponent<SpriteRenderer>().sprite.texture;
             int u = index[i];
-           
-            
-
             //text.text = names[i];
             GameObject obj = new GameObject();
             foreach (var item in lettertext)
@@ -164,7 +162,6 @@ public class OpenScroll : MonoBehaviour
                 if(item.name == (u+1).ToString())
                 {
                     //Debug.Log("FOUND");
-                   // Debug.Log(u);
                     Texture2D tex = (Texture2D)item;
                     obj.AddComponent<SpriteRenderer>().sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0, 0));
                     obj.AddComponent<BoxCollider2D>().size = new Vector2(1, 1);
@@ -173,7 +170,6 @@ public class OpenScroll : MonoBehaviour
                     obj.AddComponent<Rune>().answer = u.ToString();
                     obj.name = u.ToString();
                     obj.tag = "rune";
-                    //obj.AddComponent<TextMesh>().text = names[i];
                     //Debug.Log(p.transform.position.z);
                     pos.x = width / 7;
                     pos.y = (-wordlength + i) + height / 4;
@@ -187,9 +183,6 @@ public class OpenScroll : MonoBehaviour
             
         }
 
-
-        //Debug.Log(pairlength);
-        //Debug.Log(runePos.y);
     }
 
     public bool SetTutorial

@@ -13,7 +13,7 @@ public class Rune : MonoBehaviour
     private float z;
     public float dragSpeed = 1f;
     Vector3 lastMousePos;
-    public GameObject[] tutorialPages = new GameObject[5];
+    
     void Start()
     {
         pos = this.transform.position;
@@ -93,12 +93,8 @@ public class Rune : MonoBehaviour
 
         if(diff.x <0.5 && diff.y < 0.5 && diff.x >0 && diff.y > 0)
         {
-            
-
             return true;
-        }
-
-        
+        }   
         return false;
     }
 
