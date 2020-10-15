@@ -43,11 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa572ffe0b5a37e499a798827f66b00c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTool: 0
+  currentTool: 3
   minigames:
   - {fileID: 1881318899924283737, guid: c6099091e3b6c414689c428079487731, type: 3}
   - {fileID: 5210879829687218924, guid: 3e336b7f54bd56d438bde9698004e51e, type: 3}
   - {fileID: 4785530690277017569, guid: bbe3dfaa547679348866479c66d1bd88, type: 3}
+  mazes:
+  - {fileID: 1881318899924283737, guid: c6099091e3b6c414689c428079487731, type: 3}
+  - {fileID: 8168353649368582054, guid: 4e92890737eb7c6458d49aae4b00b76e, type: 3}
+  - {fileID: 1026665847421154495, guid: 65e60e705e52f9d4283488d0907fcded, type: 3}
   toolUI:
   - {fileID: 0}
   - {fileID: 0}

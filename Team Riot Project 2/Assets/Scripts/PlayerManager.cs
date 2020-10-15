@@ -30,7 +30,7 @@ public class PlayerManager : MonoBehaviour
     //use to track the current minigame being played
     public GameObject currentMinigame;
 
-    public bool tutorial = false;
+    public bool tutorial;
 
     List<int> toolCount = new List<int>();
     // Start is called before the first frame update
@@ -44,6 +44,9 @@ public class PlayerManager : MonoBehaviour
         {
             instance = this;
         }
+
+        tutorial = false;
+
     }
 
     // Update is called once per frame
@@ -54,12 +57,16 @@ public class PlayerManager : MonoBehaviour
         {
             UnequipTool();
         }
+
+        
     }
 
     public void StartMinigame(PlayerTool tool)
     {
         //hide tools in UI
         ToggleUI(false);
+
+        
 
         //start new minigame
         GameObject newMinigame = null;
@@ -96,13 +103,15 @@ public class PlayerManager : MonoBehaviour
                 break;
         }
 
+        
+
         //set current tool to unequipped
         UnequipTool();
     }
 
     public void EndMinigame()
     {
-        //check to see if we are done with tutorial for all games 
+        Debug.Log("ENDING MIN GAME");
         tutorial = TutorialCheck(1);
         //start moving weapon offscreen //When tutorial is done 
         if (tutorial == true)
@@ -125,16 +134,16 @@ public class PlayerManager : MonoBehaviour
 
     private bool TutorialCheck(int _num)
     {
-        //Checks each unique case for minigame and looks for distinct amount to see if we have played them all. 
-        if (tutorial == false)
+        if(tutorial == false)
         {
             //checker for number of unique tools selected
             int amt = 0;
             //Debug.Log(toolCount.Count);
             for (int i = 0; i < toolCount.Count; i++)
             {
-                //Debug.Log(toolCount[i].ToString());
-                if (toolCount.Contains(i))//if we have any of the following unique tools by index
+
+                Debug.Log("Tutorial Count SIZE: " + toolCount.Count);
+                if (toolCount.Contains(i) || toolCount.Contains(2))//if we have any of the following unique tools by index
                 {
                     //we increase the tool amount
                     amt++;

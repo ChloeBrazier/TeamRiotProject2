@@ -56,6 +56,7 @@ public class Weapon : MonoBehaviour
 
     private void OnMouseDown()
     {
+
         Debug.Log("Clicking on Weapon");
         //tutorial check
         if(tutorial == false)
@@ -66,7 +67,18 @@ public class Weapon : MonoBehaviour
                 tutorial = PlayerManager.instance.tutorial;
                 PlayerTool minigame = PlayerManager.instance.currentTool;
                 PlayerManager.instance.StartMinigame(minigame);
-                
+                switch (minigame)
+                {
+                    case PlayerTool.Lockpick:
+                        spriteRenderer.color = Color.red;
+                        break;
+                    case PlayerTool.Loupe:
+                        spriteRenderer.color = new Color32(124, 55, 189, 255);
+                        break;
+                    case PlayerTool.Eyepiece:
+                        spriteRenderer.color = Color.blue;
+                        break;
+                }
             }
         }
         else //normal case
@@ -83,5 +95,7 @@ public class Weapon : MonoBehaviour
                 PlayerManager.instance.StartMinigame(PlayerManager.instance.currentTool);
             }*/
         }
+
+        
     }
 }

@@ -58,8 +58,9 @@ public class LevelManager : MonoBehaviour
     {
         if(levelTick >= 0)
         {
+            GameObject startButton = GameObject.FindGameObjectWithTag("startTutorial");
             //spawn a new weapon if active weapon is null
-            if(activeWeapon == null)
+            if (activeWeapon == null && startButton == null)
             {
                 activeWeapon = Instantiate(weaponPrefab, weaponLocList[0]);
                 activeWeapon.transform.SetParent(null);

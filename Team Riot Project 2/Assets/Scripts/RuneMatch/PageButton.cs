@@ -9,11 +9,13 @@ public class PageButton : MonoBehaviour
     string tagName;
     
     public GameObject tutorialBox;
+    GameObject startButton; 
     // Start is called before the first frame update
     void Start()
     {
         tagName = this.tag;
         tutorialBox = GameObject.FindGameObjectWithTag("tutorialBox");
+        startButton = GameObject.FindGameObjectWithTag("startTutorial");
         //this.add
         Debug.Log(tagName);
     }
@@ -31,7 +33,10 @@ public class PageButton : MonoBehaviour
 
     public void Clicked()
     {
-        if(tagName == "esc")
+
+        
+
+        if (tagName == "esc")
         {
             
             var forward = GameObject.FindGameObjectWithTag("forward");
@@ -46,12 +51,12 @@ public class PageButton : MonoBehaviour
         {
       
           
-            tutorialBox.GetComponent<RuneTutorial>().idx++;
+            tutorialBox.GetComponent<TutorialBox>().idx++;
         }
         if (tagName == "backward")
         {
            
-            tutorialBox.GetComponent<RuneTutorial>().idx--;
+            tutorialBox.GetComponent<TutorialBox>().idx--;
         }
 
         if(tagName == "startTutorial")

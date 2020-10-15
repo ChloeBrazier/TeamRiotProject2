@@ -37,12 +37,12 @@ public class OpenScroll : MonoBehaviour
             runetut = Instantiate(runetut, textpos, Quaternion.identity);
             //runetut.GetComponentInChildren<Text>().text = "TESTING";
             runetut.transform.parent = gameUI.transform;
-            runetut.AddComponent<RuneTutorial>();
-            runetut.GetComponent<RuneTutorial>().PushText("Rune Matching Tutorial:\n\n\n" + " \nThis is one of the enchantment games" +
+            runetut.AddComponent<TutorialBox>();
+            runetut.GetComponent<TutorialBox>().PushText("Rune Matching Tutorial:\n\n\n" + " \nThis is one of the enchantment games" +
                 " you will be playing to disenchant a weapon.");
-            runetut.GetComponent<RuneTutorial>().PushText("Rune Matching Tutorial:\n\n\n" + "\nEach side of the scroll will have a set of runes to match with letters. " +
+            runetut.GetComponent<TutorialBox>().PushText("Rune Matching Tutorial:\n\n\n" + "\nEach side of the scroll will have a set of runes to match with letters. " +
                 "Click and drag the correct rune with the letter");
-            runetut.GetComponent<RuneTutorial>().PushText("Rune Matching Tutorial:\n\n\n" + "\nUse trial and error to test the correct matching runes to disenchant the weapon.");
+            runetut.GetComponent<TutorialBox>().PushText("Rune Matching Tutorial:\n\n\n" + "\nUse trial and error to test the correct matching runes to disenchant the weapon.");
 
                 //Debug.Log(gameUI);
                 //Debug.Log(runetut);
@@ -68,14 +68,14 @@ public class OpenScroll : MonoBehaviour
             //tutorial run 
             if (mazeBuilt == false && tutorial == false)
             {
-                //Debug.Log("TUTORIAL RUN");
+                Debug.Log("TUTORIAL RUN");
                 BuildMatch();
                 mazeBuilt = true;
                 
             } //normal run 
             else if (mazeBuilt == false && tutorial == true)
             {
-                //Debug.Log("NORMAL RUN");
+                Debug.Log("NORMAL RUN");
                 BuildMatch();
                 mazeBuilt = true;
             }
@@ -90,7 +90,7 @@ public class OpenScroll : MonoBehaviour
                 
                 //Debug.Log("Finished rune matching");
                 PlayerManager.instance.EndMinigame();
-                Destroy(runetut);
+                DestroyImmediate(runetut, true);
                 Destroy(this.gameObject);
             }
         }

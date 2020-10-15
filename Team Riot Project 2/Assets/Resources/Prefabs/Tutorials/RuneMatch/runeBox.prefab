@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8107260050273481687}
   - component: {fileID: 8107260050273481680}
   - component: {fileID: 8107260050273481681}
+  - component: {fileID: 5394184472855442598}
   m_Layer: 5
   m_Name: runeBox
   m_TagString: tutorialBox
@@ -121,6 +122,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5394184472855442598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8107260050273481683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e433621050a0fa24a81dde9a8390fda9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textContent: []
+  idx: 0
 --- !u!1 &8107260050932304666
 GameObject:
   m_ObjectHideFlags: 0
