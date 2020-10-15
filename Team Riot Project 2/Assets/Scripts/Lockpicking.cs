@@ -62,6 +62,11 @@ public class Lockpicking : MonoBehaviour
                 }
                 Lock.transform.rotation = Quaternion.RotateTowards(Lock.transform.rotation, rotation, lockRotationSpeed);
                 Pick.transform.position = TopOfKeyWay.transform.position;//pick moves with it
+                if (Lock.transform.rotation == Quaternion.AngleAxis(90, Vector3.forward)&&hitSweetSpot)
+                {
+                    //exit
+                    PlayerManager.instance.EndMinigame();
+                }
             }
             else
             {
