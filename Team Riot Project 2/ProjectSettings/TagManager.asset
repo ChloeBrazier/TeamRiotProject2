@@ -12,6 +12,8 @@ TagManager:
   - backward
   - tutorialBox
   - esc
+  - startTutorial
+  - introBox
   layers:
   - Default
   - TransparentFX

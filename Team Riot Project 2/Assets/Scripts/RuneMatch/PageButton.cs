@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PageButton : MonoBehaviour
 {
@@ -51,6 +52,13 @@ public class PageButton : MonoBehaviour
         {
            
             tutorialBox.GetComponent<RuneTutorial>().idx--;
+        }
+
+        if(tagName == "startTutorial")
+        {
+            Destroy(gameObject);
+            Destroy(GameObject.FindGameObjectWithTag("introBox"));
+            SceneManager.LoadScene("TutorialTaurian", LoadSceneMode.Additive);
         }
 
 
