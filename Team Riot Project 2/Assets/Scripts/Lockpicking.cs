@@ -22,7 +22,9 @@ public class Lockpicking : MonoBehaviour
     public float movementSpotLeft;
     public float movementSpotRight;
     private bool hitSweetSpot = false;
-
+    public GameObject lockBox;
+    GameObject gameUI;
+    bool tutorial;
     void Start()
     {
         //set cam
@@ -35,6 +37,34 @@ public class Lockpicking : MonoBehaviour
         sweetSpotRight = sweetSpotCenter + (difficultyArc / 2);
         movementSpotLeft = sweetSpotCenter - difficultyArc ;
         movementSpotRight = sweetSpotCenter + difficultyArc;
+
+        gameUI = GameObject.FindGameObjectWithTag("interface");
+
+        if (lockBox == null)
+            lockBox = Resources.Load("mazeBox") as GameObject;
+
+        if (PlayerManager.instance != null)
+        {
+            tutorial = PlayerManager.instance.tutorial;
+        }
+
+        Vector3 textpos = new Vector3(151, 275, 0);
+        if (tutorial == false)
+        {
+            lockBox = Instantiate(lockBox, textpos, Quaternion.identity);
+            //runetut.GetComponentInChildren<Text>().text = "TESTING";
+            lockBox.transform.parent = gameUI.transform;
+            lockBox.AddComponent<TutorialBox>();
+            lockBox.GetComponent<TutorialBox>().PushText("Lock Picking Tutorial:\n\n\n" + " \nWith this disenchantment, " +
+                "you must unlock the enchantment by lock picking the weapon.");
+            lockBox.GetComponent<TutorialBox>().PushText("Lock Picking Tutorial:\n\n\n" + " \nRotate the mouse around the lock to move the lockpick to the correct position.");
+            lockBox.GetComponent<TutorialBox>().PushText("Lock Picking Tutorial:\n\n\n" + " \nPress the spacebar to turn the lock to match the position of the lockpick.");
+            lockBox.GetComponent<TutorialBox>().PushText("Lock Picking Tutorial:\n\n\n" + " \nThe less the lock jiggles, the closer you will be to disenchanting the weapon.");
+            lockBox.GetComponent<TutorialBox>().PushText("Lock Picking Tutorial:\n\n\n" + " \nMake sure to watch and see how far the lock can rotate for where the sweet spot could be.");
+
+            Debug.Log(gameUI);
+            //Debug.Log(runetut);
+        }
     }
     // Update is called once per frame
     void Update()
@@ -97,5 +127,10 @@ public class Lockpicking : MonoBehaviour
                 Lock.transform.rotation = Quaternion.RotateTowards(Lock.transform.rotation, Quaternion.AngleAxis(0, Vector3.forward), lockRotationSpeed / 2);
                 Pick.transform.position = TopOfKeyWay.transform.position;
             }
+    }
+
+    void OnDestroy()
+    {
+        Destroy(lockBox);
     }
 }

@@ -169,6 +169,8 @@ MonoBehaviour:
   sweetSpotRight: 0
   movementSpotLeft: 0
   movementSpotRight: 0
+  lockBox: {fileID: 1960099215438068011, guid: 732e33da3577ea548a60250e737b83cb, type: 3}
+  gameUI: {fileID: 6832243460194361433, guid: b956d64ae8cf2ae4ebb6a14b02c341bc, type: 3}
 --- !u!1 &5210879829754833703
 GameObject:
   m_ObjectHideFlags: 0

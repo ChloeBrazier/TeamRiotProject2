@@ -32,7 +32,7 @@ public class PlayerManager : MonoBehaviour
 
     public bool tutorial;
 
-    List<int> toolCount = new List<int>();
+    List<PlayerTool> toolCount = new List<PlayerTool>();
     // Start is called before the first frame update
     void Start()
     {
@@ -75,7 +75,7 @@ public class PlayerManager : MonoBehaviour
         {
             case PlayerTool.Lockpick:
                 newMinigame = minigames[1];
-                toolCount.Add(1);
+                toolCount.Add(PlayerTool.Lockpick);
                 currentMinigame = Instantiate(newMinigame);
                 break;
             case PlayerTool.Loupe:
@@ -93,12 +93,12 @@ public class PlayerManager : MonoBehaviour
                         newMinigame = mazes[2];
                         break;
                 }
-                toolCount.Add(0);
+                toolCount.Add(PlayerTool.Loupe);
                 currentMinigame = Instantiate(newMinigame);
                 break;
             case PlayerTool.Eyepiece:
                 newMinigame = minigames[2];
-                toolCount.Add(2);
+                toolCount.Add(PlayerTool.Eyepiece);
                 currentMinigame = Instantiate(newMinigame);
                 break;
         }
@@ -112,7 +112,10 @@ public class PlayerManager : MonoBehaviour
     public void EndMinigame()
     {
         Debug.Log("ENDING MIN GAME");
-        tutorial = TutorialCheck(1);
+        //(1, true) //(3, false) for normal run
+        //tutorial = TutorialCheck(1, true); //true will complete the tutorial check regardless of the game
+        tutorial = TutorialCheck(3, false);
+
         //start moving weapon offscreen //When tutorial is done 
         if (tutorial == true)
         {
@@ -132,12 +135,28 @@ public class PlayerManager : MonoBehaviour
         ToggleUI(true);
     }
 
-    private bool TutorialCheck(int _num)
+    private bool TutorialCheck(int _num, bool pass)
     {
-        if(tutorial == false)
+        if ( pass == true && toolCount.Count == _num &&
+                (toolCount.Contains(PlayerTool.Eyepiece) ||
+                toolCount.Contains(PlayerTool.Lockpick) ||
+                toolCount.Contains(PlayerTool.Loupe)))
         {
+            return true;
+        }
+
+        if (tutorial == false && pass == false)
+        {
+            if(toolCount.Count == _num && 
+                (toolCount.Contains(PlayerTool.Eyepiece) && 
+                toolCount.Contains(PlayerTool.Lockpick) &&
+                toolCount.Contains(PlayerTool.Loupe)))
+            {
+                return true;
+            }
+
             //checker for number of unique tools selected
-            int amt = 0;
+           /* int amt = 0;
             //Debug.Log(toolCount.Count);
             for (int i = 0; i < toolCount.Count; i++)
             {
@@ -155,7 +174,7 @@ public class PlayerManager : MonoBehaviour
                 Debug.Log("Tutorial Complete");
 
                 return true;
-            }
+            }*/
         }
 
         return false;

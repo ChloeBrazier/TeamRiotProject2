@@ -6,12 +6,12 @@ public class MazeManager : MonoBehaviour
 {
     //list of maze end locations
     public List<Transform> endLocations;
-    public GameObject mazebox;
+    
     //maze end prefab
     public GameObject endPrefab;
 
     bool tutorial;
-
+    public GameObject mazebox;
     GameObject gameUI;
     // Start is called before the first frame update
     void Start()
