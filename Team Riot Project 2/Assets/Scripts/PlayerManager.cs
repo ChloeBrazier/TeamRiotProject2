@@ -114,8 +114,11 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("ENDING MIN GAME");
         //(1, true) //(3, false) for normal run
         //tutorial = TutorialCheck(1, true); //true will complete the tutorial check regardless of the game
-        tutorial = TutorialCheck(3, false);
-
+        if(tutorial == false)
+        {
+            tutorial = TutorialCheck(3, false);
+        }
+        
         //start moving weapon offscreen //When tutorial is done 
         if (tutorial == true)
         {

@@ -9,13 +9,18 @@ public class Weapon : MonoBehaviour
 
     //sprite renderer
     private SpriteRenderer spriteRenderer;
-    bool tutorial = false;
+
+    //effects type of weapon spawn
+    bool tutorial;
+
     // Start is called before the first frame update
     void Start()
     {
         //save sprite renderer component
         spriteRenderer = GetComponent<SpriteRenderer>();
 
+        //set tutorial value to player manager's tutorial value
+        tutorial = PlayerManager.instance.tutorial;
 
         //give this weapon randomized enchantments
         int randEnchantment = Random.Range(0, 3);
@@ -61,7 +66,7 @@ public class Weapon : MonoBehaviour
         //tutorial check
         if(tutorial == false)
         {
-            if (PlayerManager.instance.currentMinigame == null)
+            if (PlayerManager.instance.currentMinigame == null && PlayerManager.instance.currentTool != PlayerTool.Unequipped)
             {
                 //updating tutorial value from manager
                 tutorial = PlayerManager.instance.tutorial;
