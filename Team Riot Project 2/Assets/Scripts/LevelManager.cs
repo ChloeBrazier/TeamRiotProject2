@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -81,6 +82,20 @@ public class LevelManager : MonoBehaviour
                 //TODO: end the level
                 EndLevel();
             }
+            else
+            {
+                //reload this scene when R is pressed
+                if(Input.GetKeyDown(KeyCode.R))
+                {
+                    SceneManager.LoadScene(0);
+                }
+            }
+        }
+
+        //quit game if escape key is pressed
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
         }
     }
 
@@ -107,6 +122,8 @@ public class LevelManager : MonoBehaviour
         {
             endUI.text += "\n\n Game Over";
         }
+
+        endUI.text += "\n\n Press R to reload";
 
         //set level end bool
         levelEnded = true;
