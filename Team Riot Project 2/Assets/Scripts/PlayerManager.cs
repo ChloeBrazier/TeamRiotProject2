@@ -32,6 +32,9 @@ public class PlayerManager : MonoBehaviour
 
     public bool tutorial;
 
+    private int clipIndex;
+    public List<AudioClip> finishClips;
+
     List<PlayerTool> toolCount = new List<PlayerTool>();
     // Start is called before the first frame update
     void Start()
@@ -75,10 +78,12 @@ public class PlayerManager : MonoBehaviour
         {
             case PlayerTool.Lockpick:
                 newMinigame = minigames[1];
+                clipIndex = 1;
                 toolCount.Add(PlayerTool.Lockpick);
                 currentMinigame = Instantiate(newMinigame);
                 break;
             case PlayerTool.Loupe:
+                clipIndex = 0;
                 //randomize which maze is spawned
                 int randMaze = Random.Range(0, 3);
                 switch(randMaze)
@@ -98,6 +103,7 @@ public class PlayerManager : MonoBehaviour
                 break;
             case PlayerTool.Eyepiece:
                 newMinigame = minigames[2];
+                clipIndex = 2;
                 toolCount.Add(PlayerTool.Eyepiece);
                 currentMinigame = Instantiate(newMinigame);
                 break;
@@ -132,6 +138,7 @@ public class PlayerManager : MonoBehaviour
         //TODO: support weapons with multiple enchantments
         LevelManager.instance.weaponsCompleted++;
         LevelManager.instance.scoreUI.text = "Weapons Completed: " + LevelManager.instance.weaponsCompleted;
+        PlayFinishClip();
         Destroy(currentMinigame);
 
         //show tools in UI
@@ -195,5 +202,11 @@ public class PlayerManager : MonoBehaviour
         {
             tool.SetActive(toggle);
         }
+    }
+
+    public void PlayFinishClip()
+    {
+        GetComponent<AudioSource>().clip = finishClips[clipIndex];
+        GetComponent<AudioSource>().Play();
     }
 }

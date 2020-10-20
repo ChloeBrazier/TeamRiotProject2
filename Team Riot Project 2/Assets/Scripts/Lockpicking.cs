@@ -25,6 +25,8 @@ public class Lockpicking : MonoBehaviour
     public GameObject lockBox;
     GameObject gameUI;
     bool tutorial;
+
+    public List<AudioClip> clips;
     void Start()
     {
         //set cam
@@ -95,6 +97,7 @@ public class Lockpicking : MonoBehaviour
                 if (Lock.transform.rotation == Quaternion.AngleAxis(90, Vector3.forward)&&hitSweetSpot)
                 {
                     //exit
+                    PlayClip(2);
                     PlayerManager.instance.EndMinigame();
                 }
             }
@@ -115,6 +118,7 @@ public class Lockpicking : MonoBehaviour
                 //check if in sweetSpot
                 if (Pick.rotation > sweetSpotLeft && Pick.rotation < sweetSpotRight)
                 {
+                    if(hitSweetSpot == false) PlayClip(0);
                     hitSweetSpot = true;
                     Debug.Log("In Sweet spot");
                 }
@@ -132,5 +136,11 @@ public class Lockpicking : MonoBehaviour
     void OnDestroy()
     {
         Destroy(lockBox);
+    }
+
+    void PlayClip(int index)
+    {
+        GetComponent<AudioSource>().clip = clips[index];
+        GetComponent<AudioSource>().Play();
     }
 }

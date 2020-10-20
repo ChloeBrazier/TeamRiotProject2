@@ -19,6 +19,7 @@ public class MazeEnd : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Finished the maze");
+        GetComponent<AudioSource>().Play();
         PlayerManager.instance.EndMinigame();
     }
 }

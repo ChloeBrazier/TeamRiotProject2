@@ -33,6 +33,10 @@ public class LevelManager : MonoBehaviour
     public Text timerUI;
     public Text endUI;
 
+    //Game music variables
+    public List<AudioClip> music;
+    private AudioSource audio;
+
     private bool levelEnded = false;
 
     // Start is called before the first frame update
@@ -46,6 +50,10 @@ public class LevelManager : MonoBehaviour
         {
             instance = this;
         }
+
+        //save audio source and play regular level music
+        audio = GetComponent<AudioSource>();
+        PlayMusic(0);
 
         //set quota UI based on current quota
         quotaUI.text = "Weapons Needed: " + weaponsNeeded;
@@ -117,10 +125,12 @@ public class LevelManager : MonoBehaviour
         if(weaponsCompleted >= weaponsNeeded)
         {
             endUI.text += "\n\n Level Complete!";
+            PlayMusic(1);
         }
         else
         {
             endUI.text += "\n\n Game Over";
+            PlayMusic(2);
         }
 
         endUI.text += "\n\n Press R to reload";
@@ -144,5 +154,11 @@ public class LevelManager : MonoBehaviour
             weapon.transform.position = new Vector2(Mathf.SmoothStep(startVec.x, endLocation.position.x, (Time.time - startTime)/1.5f), weapon.transform.position.y);
             yield return null;
         }
+    }
+
+    public void PlayMusic(int index)
+    {
+        audio.clip = music[index];
+        audio.Play();
     }
 }

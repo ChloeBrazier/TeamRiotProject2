@@ -19,6 +19,8 @@ public class OpenScroll : MonoBehaviour
     GameObject playerManager;
     public bool mazeWon = false;
     bool tutorial;
+
+    public List<AudioClip> clips;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,8 +49,8 @@ public class OpenScroll : MonoBehaviour
                 //Debug.Log(gameUI);
                 //Debug.Log(runetut);
         }
-        
 
+        PlayClip(0);
     }
 
     // Update is called once per frame
@@ -191,5 +193,11 @@ public class OpenScroll : MonoBehaviour
         {
             tutorial = value;
         }
+    }
+
+    void PlayClip(int index)
+    {
+        GetComponent<AudioSource>().clip = clips[index];
+        GetComponent<AudioSource>().Play();
     }
 }

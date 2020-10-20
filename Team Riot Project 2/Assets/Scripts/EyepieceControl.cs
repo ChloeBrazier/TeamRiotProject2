@@ -31,6 +31,7 @@ public class EyepieceControl : MonoBehaviour
     public void Click()
     {
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+        GetComponent<AudioSource>().Play();
         PlayerManager.instance.currentTool = PlayerTool.Eyepiece;
         transform.position = startPosition;
     }

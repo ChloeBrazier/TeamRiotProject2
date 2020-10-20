@@ -22,6 +22,7 @@ public class LockPickControl : MonoBehaviour
     public void Click()
     {
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+        GetComponent<AudioSource>().Play();
         PlayerManager.instance.currentTool = PlayerTool.Lockpick;
     }
 }

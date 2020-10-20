@@ -10,10 +10,13 @@ public class MazeFly : MonoBehaviour
     //move speed
     private float moveSpeed = 500;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
         flyBody = GetComponent<Rigidbody2D>();
+        GetComponent<AudioSource>().Play();
     }
 
     // Update is called once per frame
