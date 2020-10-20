@@ -1833,7 +1833,7 @@ MonoBehaviour:
   - {fileID: 1132037642}
   - {fileID: 1259715835}
   currentMinigame: {fileID: 0}
-  tutorial: 0
+  tutorial: 1
   finishClips:
   - {fileID: 8300000, guid: aea217a4c463b104f867619ed44d0718, type: 3}
   - {fileID: 8300000, guid: 700b10a29d258604483af13563dbb8db, type: 3}

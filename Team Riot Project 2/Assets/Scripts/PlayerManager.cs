@@ -31,6 +31,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject currentMinigame;
 
     public bool tutorial;
+    private bool finishedTut=false;
 
     private int clipIndex;
     public List<AudioClip> finishClips;
@@ -124,20 +125,25 @@ public class PlayerManager : MonoBehaviour
         {
             tutorial = TutorialCheck(3, false);
         }
-        
         //start moving weapon offscreen //When tutorial is done 
-        if (tutorial == true)
+        if (tutorial == true&!finishedTut)
         {
             StartCoroutine(LevelManager.instance.MoveWeapon(LevelManager.instance.activeWeapon, LevelManager.instance.weaponLocList[2]));
+            LevelManager.instance.weaponsCompleted++;
+            LevelManager.instance.scoreUI.text = "Weapons Completed: " + LevelManager.instance.weaponsCompleted;
+            finishedTut = true;
         }
         else //normal case 
         {
-            StartCoroutine(LevelManager.instance.MoveWeapon(LevelManager.instance.activeWeapon, LevelManager.instance.weaponLocList[1]));
+            if (LevelManager.instance.activeWeapon.GetComponent<Weapon>().enchantments.Count == 0)
+            {
+                StartCoroutine(LevelManager.instance.MoveWeapon(LevelManager.instance.activeWeapon, LevelManager.instance.weaponLocList[2]));
+                LevelManager.instance.weaponsCompleted++;
+                LevelManager.instance.scoreUI.text = "Weapons Completed: " + LevelManager.instance.weaponsCompleted;
+            }
         }
         //increase weapons completed and close current minigame
         //TODO: support weapons with multiple enchantments
-        LevelManager.instance.weaponsCompleted++;
-        LevelManager.instance.scoreUI.text = "Weapons Completed: " + LevelManager.instance.weaponsCompleted;
         PlayFinishClip();
         Destroy(currentMinigame);
 

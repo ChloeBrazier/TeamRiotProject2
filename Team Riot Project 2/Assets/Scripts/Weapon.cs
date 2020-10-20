@@ -22,10 +22,11 @@ public class Weapon : MonoBehaviour
         //set tutorial value to player manager's tutorial value
         tutorial = PlayerManager.instance.tutorial;
 
-        //give this weapon randomized enchantments
-        int randEnchantment = Random.Range(0, 3);
+        //quantity of enchantments on weapon
+        int randQuantityOfEnchantments = Random.Range(1, 4);
+
         //tutorial checks. Adding each minigame to Tool list
-        if(tutorial == false)
+        if (tutorial == false)
         {
             enchantments.Add(PlayerTool.Lockpick);
             enchantments.Add(PlayerTool.Loupe);
@@ -33,20 +34,25 @@ public class Weapon : MonoBehaviour
         }
         else //normal case
         {
-            switch (randEnchantment)
+            for (int i=0; i<randQuantityOfEnchantments; i++)
             {
-                case 0:
-                    enchantments.Add(PlayerTool.Lockpick);
-                    spriteRenderer.color = Color.red;
-                    break;
-                case 1:
-                    enchantments.Add(PlayerTool.Loupe);
-                    spriteRenderer.color = new Color32(124, 55, 189, 255);
-                    break;
-                case 2:
-                    enchantments.Add(PlayerTool.Eyepiece);
-                    spriteRenderer.color = Color.blue;
-                    break;
+                //give this weapon randomized enchantments
+                int randEnchantment = Random.Range(0, 3);
+                switch (randEnchantment)
+                {
+                    case 0:
+                        enchantments.Add(PlayerTool.Lockpick);
+                        spriteRenderer.color = Color.red;
+                        break;
+                    case 1:
+                        enchantments.Add(PlayerTool.Loupe);
+                        spriteRenderer.color = new Color32(124, 55, 189, 255);
+                        break;
+                    case 2:
+                        enchantments.Add(PlayerTool.Eyepiece);
+                        spriteRenderer.color = Color.blue;
+                        break;
+                }
             }
         }
 
@@ -91,6 +97,7 @@ public class Weapon : MonoBehaviour
             //alternative
             if (enchantments.Contains(PlayerManager.instance.currentTool) && PlayerManager.instance.currentMinigame == null)
             {
+                enchantments.Remove(PlayerManager.instance.currentTool);
                 tutorial = PlayerManager.instance.tutorial;
                 PlayerManager.instance.StartMinigame(PlayerManager.instance.currentTool);
             }
