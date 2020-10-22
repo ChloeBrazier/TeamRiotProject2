@@ -34,6 +34,7 @@ public class Weapon : MonoBehaviour
         }
         else //normal case
         {
+            Color color=Color.black;
             for (int i=0; i<randQuantityOfEnchantments; i++)
             {
                 //give this weapon randomized enchantments
@@ -42,18 +43,22 @@ public class Weapon : MonoBehaviour
                 {
                     case 0:
                         enchantments.Add(PlayerTool.Lockpick);
-                        spriteRenderer.color = Color.red;
+                        //spriteRenderer.color = Color.red;
+                        color.r = 255;
                         break;
                     case 1:
                         enchantments.Add(PlayerTool.Loupe);
-                        spriteRenderer.color = new Color32(124, 55, 189, 255);
+                        //spriteRenderer.color = new Color32(124, 55, 189, 255);
+                        color.g = 255;
                         break;
                     case 2:
                         enchantments.Add(PlayerTool.Eyepiece);
-                        spriteRenderer.color = Color.blue;
+                        //spriteRenderer.color = Color.blue;
+                        color.b = 255;
                         break;
                 }
             }
+            spriteRenderer.color = color;
         }
 
         
