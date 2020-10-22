@@ -38,7 +38,7 @@ public class LevelManager : MonoBehaviour
     private AudioSource audio;
 
     private bool levelEnded = false;
-
+    public GameObject introbox;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,9 +57,24 @@ public class LevelManager : MonoBehaviour
 
         //set quota UI based on current quota
         quotaUI.text = "Weapons Needed: " + weaponsNeeded;
-
+        
         //set up level tick
         levelTick = levelTime;
+        introbox = GameObject.FindGameObjectWithTag("introBox");
+        introbox.AddComponent<TutorialBox>();
+        introbox.GetComponent<TutorialBox>().PushText("Hello!\n\n" +
+            "welcome to Where the Magic Doesn’t Happen! " +
+            "Today is your first day at the disenchantment compound, " +
+            "all sorts of illegally enchanted weapons pass through this facility. " +
+            "Your job is simple: disenchant the magical items that come your way.");
+        introbox.GetComponent<TutorialBox>().PushText("Since its your first day, " +
+            "we'll teach you how it all works. We've supplied you with an enchanted Lock pick, a wizard's eye glass, " +
+            "and Runic Scroll.");
+        introbox.GetComponent<TutorialBox>().PushText("Each weapon's enchantments will only appear" +
+            "when selecting the correct tool. Once the enchantment is open, a minigame will appear." +
+            "Completeting the minigame before time runs out will successfully disenchant the weapon.");
+        introbox.GetComponent<TutorialBox>().PushText("Keep in mind that there is a quota we must meet " +
+            "for disenchanting weapons. Make sure to keep up as things can get very fast paced. Oh and be mindful of weapons with multiple enchantments.");
     }
 
     // Update is called once per frame
@@ -68,6 +83,7 @@ public class LevelManager : MonoBehaviour
         if(levelTick >= 0)
         {
             GameObject startButton = GameObject.FindGameObjectWithTag("startTutorial");
+            
             //spawn a new weapon if active weapon is null
             if (activeWeapon == null && startButton == null)
             {
@@ -158,7 +174,16 @@ public class LevelManager : MonoBehaviour
 
     public void PlayMusic(int index)
     {
-        audio.clip = music[index];
-        audio.Play();
+        if(index >= music.Count)
+        {
+            Debug.Log("Exceeded MUSIC LIST COUNT");
+            return;
+        }
+        else
+        {
+            audio.clip = music[index];
+            audio.Play();
+        }
+        
     }
 }

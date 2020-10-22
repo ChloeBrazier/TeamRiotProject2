@@ -9,6 +9,7 @@ public class PageButton : MonoBehaviour
     string tagName;
     
     public GameObject tutorialBox;
+    GameObject introbox;
     GameObject startButton; 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +17,8 @@ public class PageButton : MonoBehaviour
         tagName = this.tag;
         tutorialBox = GameObject.FindGameObjectWithTag("tutorialBox");
         startButton = GameObject.FindGameObjectWithTag("startTutorial");
+        introbox = GameObject.FindGameObjectWithTag("introBox");
+
         //this.add
         Debug.Log(tagName);
     }
@@ -49,21 +52,35 @@ public class PageButton : MonoBehaviour
         
         if (tagName == "forward")
         {
-      
-          
-            tutorialBox.GetComponent<TutorialBox>().idx++;
+
+            if(introbox != null)
+            {
+                introbox.GetComponent<TutorialBox>().idx++;
+            }
+            if (tutorialBox != null)
+            {
+                tutorialBox.GetComponent<TutorialBox>().idx++;
+            }
+            
         }
         if (tagName == "backward")
         {
-           
-            tutorialBox.GetComponent<TutorialBox>().idx--;
+            if (introbox != null)
+            {
+                introbox.GetComponent<TutorialBox>().idx--;
+            }
+            if (tutorialBox != null)
+            {
+                tutorialBox.GetComponent<TutorialBox>().idx--;
+            }
         }
 
         if(tagName == "startTutorial")
         {
-            Destroy(gameObject);
+            
             Destroy(GameObject.FindGameObjectWithTag("introBox"));
             SceneManager.LoadScene("TutorialTaurian", LoadSceneMode.Additive);
+            Destroy(gameObject);
         }
 
 
