@@ -1985,7 +1985,7 @@ MonoBehaviour:
   - {fileID: 1363999796}
   - {fileID: 1957453946}
   - {fileID: 2062878353}
-  weaponsNeeded: 10
+  weaponsNeeded: 5
   weaponsCompleted: 0
   levelTime: 100
   scoreUI: {fileID: 656209993}
