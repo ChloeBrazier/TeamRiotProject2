@@ -58,24 +58,19 @@ public class Weapon : MonoBehaviour
 
     private void AddEnchantment() 
     {
-        Color color = Color.black;
         int randEnchantment = Random.Range(0, 3);
         switch (randEnchantment)
         {
             case 0:
                 enchantments.Add(PlayerTool.Lockpick);
-                color.r = 255;
                 break;
             case 1:
                 enchantments.Add( PlayerTool.Loupe);
-                color.g = 255;
                 break;
             case 2:
                 enchantments.Add(PlayerTool.Eyepiece);
-                color.b = 255;
                 break;
         }
-        spriteRenderer.color = color;
     }
 
     // Update is called once per frame

@@ -168,10 +168,7 @@ public class PlayerManager : MonoBehaviour
                 toolCount.Contains(PlayerTool.Loupe)))
             {
                 return true;
-            }
-
-            
-           
+            } 
         }
 
         return false;

@@ -130,11 +130,16 @@ public class LevelManager : MonoBehaviour
                         endUI.enabled = false;
                         PlayerManager.instance.ToggleUI(true);
                         Destroy(PlayerManager.instance.currentMinigame);
-                        levelTick = levelTime + level * levelTime/2;
+                        levelTick = levelTime + level * levelTime/1.2f;
                         weaponsCompleted = 0;
                         weaponsNeeded = 5 * level+5;
                         quotaUI.text = "Weapons Needed: " + weaponsNeeded;
                         levelEnded = false;
+                        scoreUI.text = "Weapons Completed: " + weaponsCompleted;
+                        if (activeWeapon != null) 
+                        {
+                            Destroy(activeWeapon);
+                        }
                     }
                 }
             }
