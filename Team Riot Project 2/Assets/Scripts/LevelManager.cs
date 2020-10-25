@@ -18,14 +18,17 @@ public class LevelManager : MonoBehaviour
     public List<Transform> weaponLocList;
 
     //number of weapons that need to be completed for this level
-    public int weaponsNeeded = 10;
+    public int weaponsNeeded = 5;
 
     //number of weapons that have been completed
     public int weaponsCompleted = 0;
 
     //the amount of time the player has to complete the level and associated time values
-    public float levelTime = 1000f;
+    public float levelTime = 10f;
     private float levelTick = 0;
+
+    //current level
+    private int level = 0;
 
     //UI elements
     public Text scoreUI;
@@ -96,7 +99,7 @@ public class LevelManager : MonoBehaviour
             if(PlayerManager.instance.tutorial == true)
             {
                 //update UI to show time left in level
-                timerUI.text = "Time: " + ((int)levelTick + 1);
+                timerUI.text = "Time: " + ((int)levelTick);
                 levelTick -= Time.deltaTime;
             }
             else
@@ -118,6 +121,22 @@ public class LevelManager : MonoBehaviour
                 {
                     SceneManager.LoadScene(0);
                 }
+                if (weaponsCompleted >= weaponsNeeded)
+                {
+                    //need key bind to start new level here
+                    if (Input.GetKeyDown(KeyCode.Return))
+                    {
+                        PlayMusic(0);
+                        endUI.enabled = false;
+                        PlayerManager.instance.ToggleUI(true);
+                        Destroy(PlayerManager.instance.currentMinigame);
+                        levelTick = levelTime + level * levelTime/2;
+                        weaponsCompleted = 0;
+                        weaponsNeeded = 5 * level+5;
+                        quotaUI.text = "Weapons Needed: " + weaponsNeeded;
+                        levelEnded = false;
+                    }
+                }
             }
         }
 
@@ -135,7 +154,6 @@ public class LevelManager : MonoBehaviour
         {
             Destroy(PlayerManager.instance.currentMinigame);
         }
-
         //show 0 on timer
         timerUI.text = "Time: " + 0;
 
@@ -145,7 +163,8 @@ public class LevelManager : MonoBehaviour
         endUI.text = "Quota: " + weaponsNeeded + "\n\nWeapons Disenchanted: " + weaponsCompleted;
         if(weaponsCompleted >= weaponsNeeded)
         {
-            endUI.text += "\n\n Level Complete!";
+            level++;
+            endUI.text += "\n\n Level"+level +" Complete!";
             PlayMusic(1);
         }
         else
@@ -154,7 +173,11 @@ public class LevelManager : MonoBehaviour
             PlayMusic(2);
         }
 
-        endUI.text += "\n\n Press R to reload";
+        endUI.text += "\n\n Press R to restart from beginning";
+        if (weaponsCompleted >= weaponsNeeded)
+        {
+            endUI.text += "\n\n Press Enter to go to next level";
+        }
 
         //set level end bool
         levelEnded = true;

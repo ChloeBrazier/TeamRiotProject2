@@ -34,34 +34,48 @@ public class Weapon : MonoBehaviour
         }
         else //normal case
         {
-            Color color=Color.black;
             for (int i=0; i<randQuantityOfEnchantments; i++)
             {
                 //give this weapon randomized enchantments
-                int randEnchantment = Random.Range(0, 3);
-                switch (randEnchantment)
+                AddEnchantment();
+            }
+            if (randQuantityOfEnchantments>=2) {
+                while (enchantments[0] == enchantments[1])
                 {
-                    case 0:
-                        enchantments.Add(PlayerTool.Lockpick);
-                        //spriteRenderer.color = Color.red;
-                        color.r = 255;
-                        break;
-                    case 1:
-                        enchantments.Add(PlayerTool.Loupe);
-                        //spriteRenderer.color = new Color32(124, 55, 189, 255);
-                        color.g = 255;
-                        break;
-                    case 2:
-                        enchantments.Add(PlayerTool.Eyepiece);
-                        //spriteRenderer.color = Color.blue;
-                        color.b = 255;
-                        break;
+                    enchantments.RemoveAt(1);
+                    AddEnchantment();
                 }
             }
-            spriteRenderer.color = color;
+            if (randQuantityOfEnchantments==3) {
+                while (enchantments[2] == enchantments[1] || enchantments[2] == enchantments[0])
+                {
+                    enchantments.RemoveAt(2);
+                    AddEnchantment();
+                }
+            }
         }
+    }
 
-        
+    private void AddEnchantment() 
+    {
+        Color color = Color.black;
+        int randEnchantment = Random.Range(0, 3);
+        switch (randEnchantment)
+        {
+            case 0:
+                enchantments.Add(PlayerTool.Lockpick);
+                color.r = 255;
+                break;
+            case 1:
+                enchantments.Add( PlayerTool.Loupe);
+                color.g = 255;
+                break;
+            case 2:
+                enchantments.Add(PlayerTool.Eyepiece);
+                color.b = 255;
+                break;
+        }
+        spriteRenderer.color = color;
     }
 
     // Update is called once per frame
