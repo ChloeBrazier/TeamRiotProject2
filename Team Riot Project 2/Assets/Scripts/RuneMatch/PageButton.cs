@@ -79,7 +79,7 @@ public class PageButton : MonoBehaviour
         {
             
             Destroy(GameObject.FindGameObjectWithTag("introBox"));
-            SceneManager.LoadScene("TutorialTaurian", LoadSceneMode.Additive);
+            //SceneManager.LoadScene("TutorialTaurian", LoadSceneMode.Additive);
             Destroy(gameObject);
         }
 

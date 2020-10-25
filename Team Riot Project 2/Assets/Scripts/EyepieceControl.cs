@@ -5,7 +5,7 @@ using UnityEngine;
 public class EyepieceControl : MonoBehaviour
 {
     public Texture2D cursorTexture;
-    public CursorMode cursorMode = CursorMode.Auto;
+    public CursorMode cursorMode = CursorMode.ForceSoftware;
     public Vector2 hotSpot = Vector2.zero;
     public Vector2 startPosition = Vector2.zero;
 
@@ -30,7 +30,7 @@ public class EyepieceControl : MonoBehaviour
 
     public void Click()
     {
-        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+        Cursor.SetCursor(cursorTexture, Vector2.zero, cursorMode);
         GetComponent<AudioSource>().Play();
         PlayerManager.instance.currentTool = PlayerTool.Eyepiece;
         transform.position = startPosition;

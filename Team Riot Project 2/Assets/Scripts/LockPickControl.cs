@@ -5,7 +5,7 @@ using UnityEngine;
 public class LockPickControl : MonoBehaviour
 {
     public Texture2D cursorTexture;
-    public CursorMode cursorMode = CursorMode.Auto;
+    public CursorMode cursorMode = CursorMode.ForceSoftware;
     public Vector2 hotSpot = Vector2.zero;
 
     // Update is called once per frame
@@ -21,7 +21,7 @@ public class LockPickControl : MonoBehaviour
 
     public void Click()
     {
-        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+        Cursor.SetCursor(cursorTexture, Vector2.zero, cursorMode);
         GetComponent<AudioSource>().Play();
         PlayerManager.instance.currentTool = PlayerTool.Lockpick;
     }

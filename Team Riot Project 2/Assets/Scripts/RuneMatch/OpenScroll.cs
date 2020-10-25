@@ -14,6 +14,7 @@ public class OpenScroll : MonoBehaviour
     UnityEngine.Object[] lettertext;
     bool mazeBuilt = false;
     public GameObject runetut;
+    private GameObject activeTut;
     Button textbutton;
     public GameObject gameUI;
     GameObject playerManager;
@@ -36,15 +37,15 @@ public class OpenScroll : MonoBehaviour
         v3 textpos = new v3(151, 275, 0);
         if(tutorial == false)
         {
-            runetut = Instantiate(runetut, textpos, Quaternion.identity);
+            activeTut = Instantiate(runetut, textpos, Quaternion.identity);
             //runetut.GetComponentInChildren<Text>().text = "TESTING";
-            runetut.transform.parent = gameUI.transform;
-            runetut.AddComponent<TutorialBox>();
-            runetut.GetComponent<TutorialBox>().PushText("Rune Matching Tutorial:\n\n\n" + " \nThis is one of the enchantment games" +
+            activeTut.transform.parent = gameUI.transform;
+            activeTut.AddComponent<TutorialBox>();
+            activeTut.GetComponent<TutorialBox>().PushText("Rune Matching Tutorial:\n\n\n" + " \nThis is one of the enchantment games" +
                 " you will be playing to disenchant a weapon.");
-            runetut.GetComponent<TutorialBox>().PushText("Rune Matching Tutorial:\n\n\n" + "\nEach side of the scroll will have a set of runes to match with letters. " +
+            activeTut.GetComponent<TutorialBox>().PushText("Rune Matching Tutorial:\n\n\n" + "\nEach side of the scroll will have a set of runes to match with letters. " +
                 "Click and drag the correct rune with the letter");
-            runetut.GetComponent<TutorialBox>().PushText("Rune Matching Tutorial:\n\n\n" + "\nUse trial and error to test the correct matching runes to disenchant the weapon.");
+            activeTut.GetComponent<TutorialBox>().PushText("Rune Matching Tutorial:\n\n\n" + "\nUse trial and error to test the correct matching runes to disenchant the weapon.");
 
                 //Debug.Log(gameUI);
                 //Debug.Log(runetut);
@@ -92,7 +93,10 @@ public class OpenScroll : MonoBehaviour
                 
                 //Debug.Log("Finished rune matching");
                 PlayerManager.instance.EndMinigame();
-                DestroyImmediate(runetut, true);
+                if(activeTut != null)
+                {
+                    DestroyImmediate(activeTut, true);
+                }
                 Destroy(this.gameObject);
             }
         }

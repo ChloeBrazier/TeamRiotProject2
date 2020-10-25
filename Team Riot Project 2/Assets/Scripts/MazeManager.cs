@@ -12,6 +12,7 @@ public class MazeManager : MonoBehaviour
 
     bool tutorial;
     public GameObject mazebox;
+    private GameObject activeBox;
     GameObject gameUI;
     // Start is called before the first frame update
     void Start()
@@ -35,11 +36,11 @@ public class MazeManager : MonoBehaviour
         Vector3 textpos = new Vector3(151, 275, 0);
         if (tutorial == false)
         {
-            mazebox = Instantiate(mazebox, textpos, Quaternion.identity);
+            activeBox = Instantiate(mazebox, textpos, Quaternion.identity);
             //runetut.GetComponentInChildren<Text>().text = "TESTING";
-            mazebox.transform.parent = gameUI.transform;
-            mazebox.AddComponent<TutorialBox>();
-            mazebox.GetComponent<TutorialBox>().PushText("Maze Fly Tutorial:\n\n\n" + " \nHere you must guide the creature " +
+            activeBox.transform.parent = gameUI.transform;
+            activeBox.AddComponent<TutorialBox>();
+            activeBox.GetComponent<TutorialBox>().PushText("Maze Fly Tutorial:\n\n\n" + " \nHere you must guide the creature " +
                 "through the maze by clicking and dragging.");
             
 
@@ -56,6 +57,9 @@ public class MazeManager : MonoBehaviour
 
     void OnDestroy()
     {
-        Destroy(mazebox);
+        if(activeBox != null)
+        {
+            Destroy(activeBox);
+        }
     }
 }

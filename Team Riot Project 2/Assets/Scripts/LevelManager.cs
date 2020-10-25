@@ -71,7 +71,7 @@ public class LevelManager : MonoBehaviour
             "we'll teach you how it all works. We've supplied you with an enchanted Lock pick, a wizard's eye glass, " +
             "and Runic Scroll.");
         introbox.GetComponent<TutorialBox>().PushText("Each weapon's enchantments will only appear" +
-            "when selecting the correct tool. Once the enchantment is open, a minigame will appear." +
+            " when selecting the correct tool. Once the enchantment is open, a minigame will appear." +
             "Completeting the minigame before time runs out will successfully disenchant the weapon.");
         introbox.GetComponent<TutorialBox>().PushText("Keep in mind that there is a quota we must meet " +
             "for disenchanting weapons. Make sure to keep up as things can get very fast paced. Oh and be mindful of weapons with multiple enchantments.");
@@ -92,12 +92,17 @@ public class LevelManager : MonoBehaviour
                 StartCoroutine(MoveWeapon(activeWeapon, weaponLocList[1]));
             }
 
-
-            //update UI to show time left in level
-            timerUI.text = "Time: " + ((int)levelTick + 1);
-
-            //decrement level time
-            levelTick -= Time.deltaTime;
+            //decrement level time once the tutorial is complete
+            if(PlayerManager.instance.tutorial == true)
+            {
+                //update UI to show time left in level
+                timerUI.text = "Time: " + ((int)levelTick + 1);
+                levelTick -= Time.deltaTime;
+            }
+            else
+            {
+                timerUI.text = "Time: ∞";
+            }
         }
         else
         {
