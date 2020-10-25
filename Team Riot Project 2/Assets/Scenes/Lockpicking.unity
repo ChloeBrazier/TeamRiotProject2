@@ -275,5 +275,61 @@ PrefabInstance:
       propertyPath: m_Name
       value: LockPicking
       objectReference: {fileID: 0}
+    - target: {fileID: 5210879830013647390, guid: 3e336b7f54bd56d438bde9698004e51e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.224
+      objectReference: {fileID: 0}
+    - target: {fileID: 5210879830013647390, guid: 3e336b7f54bd56d438bde9698004e51e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.381
+      objectReference: {fileID: 0}
+    - target: {fileID: 5210879830013647390, guid: 3e336b7f54bd56d438bde9698004e51e,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.026628556
+      objectReference: {fileID: 0}
+    - target: {fileID: 5210879830013647390, guid: 3e336b7f54bd56d438bde9698004e51e,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.032480232
+      objectReference: {fileID: 0}
+    - target: {fileID: 5210879830013647390, guid: 3e336b7f54bd56d438bde9698004e51e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5210879830013647390, guid: 3e336b7f54bd56d438bde9698004e51e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5210879830013647390, guid: 3e336b7f54bd56d438bde9698004e51e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.9848078
+      objectReference: {fileID: 0}
+    - target: {fileID: 5210879830013647390, guid: 3e336b7f54bd56d438bde9698004e51e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.17364825
+      objectReference: {fileID: 0}
+    - target: {fileID: 5210879830013647390, guid: 3e336b7f54bd56d438bde9698004e51e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5210879830013647390, guid: 3e336b7f54bd56d438bde9698004e51e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 5210879830013647391, guid: 3e336b7f54bd56d438bde9698004e51e,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fc58742575687f54397780895d993471,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e336b7f54bd56d438bde9698004e51e, type: 3}
