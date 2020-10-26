@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour
     //the amount of time the player has to complete the level and associated time values
     public float levelTime = 10f;
     private float levelTick = 0;
-
+    public GameObject endBox;
     //current level
     private int level = 0;
 
@@ -174,14 +174,18 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            endUI.text += "\n\n Game Over";
+            
+            var en = Instantiate(endBox, endUI.transform.position, Quaternion.identity);
+            en.transform.parent = GameObject.FindGameObjectWithTag("interface").transform;
+            
+            
             PlayMusic(2);
         }
 
-        endUI.text += "\n\n Press R to restart from beginning";
+       // endUI.text += "\n\n Press R to restart from beginning";
         if (weaponsCompleted >= weaponsNeeded)
         {
-            endUI.text += "\n\n Press Enter to go to next level";
+            //endUI.text += "\n\n Press Enter to go to next level";
         }
 
         //set level end bool

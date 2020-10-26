@@ -672,6 +672,12 @@ PrefabInstance:
       propertyPath: endUI
       value: 
       objectReference: {fileID: 131771342}
+    - target: {fileID: 1844253466211838773, guid: 2cc53d37aaf8eb74189402cb4dde9e2a,
+        type: 3}
+      propertyPath: endBox
+      value: 
+      objectReference: {fileID: 5893400072500558724, guid: 7f066f8d83e0b5c42a6314d8457d2415,
+        type: 3}
     - target: {fileID: 1844253466211838774, guid: 2cc53d37aaf8eb74189402cb4dde9e2a,
         type: 3}
       propertyPath: m_Name

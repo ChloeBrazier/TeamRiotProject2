@@ -14,6 +14,8 @@ TagManager:
   - esc
   - startTutorial
   - introBox
+  - endtext
+  - endBox
   layers:
   - Default
   - TransparentFX
