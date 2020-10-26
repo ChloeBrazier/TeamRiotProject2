@@ -169,7 +169,7 @@ public class LevelManager : MonoBehaviour
         if(weaponsCompleted >= weaponsNeeded)
         {
             level++;
-            endUI.text += "\n\n Level"+level +" Complete!";
+            endUI.text += "\n\n Level: "+level +" Complete!";
             PlayMusic(1);
         }
         else

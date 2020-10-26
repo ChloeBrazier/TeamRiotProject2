@@ -10,14 +10,24 @@ public class Weapon : MonoBehaviour
     //sprite renderer
     private SpriteRenderer spriteRenderer;
 
+    private SpriteRenderer starSpriteRenderer;
+
     //effects type of weapon spawn
     bool tutorial;
 
+    //camera
+    private Camera camera;
+
+    //used as preset color
+    private Color color;
     // Start is called before the first frame update
     void Start()
     {
+        camera = Camera.main;
         //save sprite renderer component
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        starSpriteRenderer = gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
 
         //set tutorial value to player manager's tutorial value
         tutorial = PlayerManager.instance.tutorial;
@@ -76,7 +86,49 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
+        if (hit)
+        {
+            if (enchantments.Contains(PlayerManager.instance.currentTool) && PlayerManager.instance.currentMinigame == null)
+            {
+                switch (PlayerManager.instance.currentTool)
+                {
+                    case PlayerTool.Lockpick:
+                        spriteRenderer.color = new Color32(255,0,0,255);
+                        break;
+                    case PlayerTool.Loupe:
+                        spriteRenderer.color = new Color32(124, 55, 189, 255);
+                        break;
+                    case PlayerTool.Eyepiece:
+                        spriteRenderer.color = new Color32(0, 0, 255, 255);
+                        break;
+                }
+            }
+        }
+        else 
+        {
+            spriteRenderer.color = spriteRenderer.material.color;
+        }
+        if (PlayerManager.instance.currentMinigame != null)
+        {
+            starSpriteRenderer.enabled = false;
+        }
+        else if (enchantments.Count>0) {
+            starSpriteRenderer.enabled = true;
+            switch (enchantments[0])
+            {
+                case PlayerTool.Lockpick:
+                    starSpriteRenderer.color = new Color32(255, 0, 0, 255);
+                    break;
+                case PlayerTool.Loupe:
+                    starSpriteRenderer.color = new Color32(124, 55, 189, 255);
+                    break;
+                case PlayerTool.Eyepiece:
+                    starSpriteRenderer.color = new Color32(0, 0, 255, 255);
+                    break;
+            }
+        }
     }
 
     private void OnMouseDown()
@@ -92,34 +144,16 @@ public class Weapon : MonoBehaviour
                 tutorial = PlayerManager.instance.tutorial;
                 PlayerTool minigame = PlayerManager.instance.currentTool;
                 PlayerManager.instance.StartMinigame(minigame);
-                switch (minigame)
-                {
-                    case PlayerTool.Lockpick:
-                        spriteRenderer.color = Color.red;
-                        break;
-                    case PlayerTool.Loupe:
-                        spriteRenderer.color = new Color32(124, 55, 189, 255);
-                        break;
-                    case PlayerTool.Eyepiece:
-                        spriteRenderer.color = Color.blue;
-                        break;
-                }
             }
         }
         else //normal case
         {
-            //alternative
             if (enchantments.Contains(PlayerManager.instance.currentTool) && PlayerManager.instance.currentMinigame == null)
             {
                 enchantments.Remove(PlayerManager.instance.currentTool);
                 tutorial = PlayerManager.instance.tutorial;
                 PlayerManager.instance.StartMinigame(PlayerManager.instance.currentTool);
             }
-            /*if (PlayerManager.instance.currentTool == enchantments[0] && PlayerManager.instance.currentMinigame == null)
-            {
-                tutorial = PlayerManager.instance.tutorial;
-                PlayerManager.instance.StartMinigame(PlayerManager.instance.currentTool);
-            }*/
         }
 
         
