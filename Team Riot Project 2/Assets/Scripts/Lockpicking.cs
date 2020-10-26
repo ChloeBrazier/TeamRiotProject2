@@ -58,12 +58,12 @@ public class Lockpicking : MonoBehaviour
             //runetut.GetComponentInChildren<Text>().text = "TESTING";
             activeBox.transform.parent = gameUI.transform;
             activeBox.AddComponent<TutorialBox>();
-            activeBox.GetComponent<TutorialBox>().PushText("Lock Picking Tutorial:\n\n\n" + " \nWith this disenchantment, " +
-                "you must unlock the enchantment by lock picking the weapon.");
-            activeBox.GetComponent<TutorialBox>().PushText("Lock Picking Tutorial:\n\n\n" + " \nRotate the mouse around the lock to move the lockpick to the correct position.");
-            activeBox.GetComponent<TutorialBox>().PushText("Lock Picking Tutorial:\n\n\n" + " \nPress the spacebar to turn the lock to match the position of the lockpick.");
-            activeBox.GetComponent<TutorialBox>().PushText("Lock Picking Tutorial:\n\n\n" + " \nThe less the lock jiggles, the closer you will be to disenchanting the weapon.");
-            activeBox.GetComponent<TutorialBox>().PushText("Lock Picking Tutorial:\n\n\n" + " \nMake sure to watch and see how far the lock can rotate for where the sweet spot could be.");
+            activeBox.GetComponent<TutorialBox>().PushText("Rune Locking Tutorial:\n\n\n" + " \nWith this disenchantment, " +
+                "you must unlock the enchantment by cracking the runes of the weapon.");
+            activeBox.GetComponent<TutorialBox>().PushText("Rune Locking Tutorial:\n\n\n" + " \nRotate the mouse around the lock to move the lockpick to the correct position.");
+            activeBox.GetComponent<TutorialBox>().PushText("Rune Locking Tutorial:\n\n\n" + " \nPress the spacebar to turn the lock to match the position of the lockpick.");
+            activeBox.GetComponent<TutorialBox>().PushText("Rune Locking Tutorial:\n\n\n" + " \nThe less the lock jiggles, the closer you will be to disenchanting the weapon.");
+            activeBox.GetComponent<TutorialBox>().PushText("Rune Locking Tutorial:\n\n\n" + " \nMake sure to watch and see how far the lock can rotate for where the sweet spot could be.");
 
             Debug.Log(gameUI);
             //Debug.Log(runetut);
