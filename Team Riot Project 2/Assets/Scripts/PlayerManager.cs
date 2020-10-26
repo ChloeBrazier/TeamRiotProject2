@@ -69,7 +69,9 @@ public class PlayerManager : MonoBehaviour
         //hide tools in UI
         ToggleUI(false);
 
-        
+        //deactivate active weapon
+        LevelManager.instance.activeWeapon.GetComponent<SpriteRenderer>().enabled = false;
+        LevelManager.instance.activeWeapon.GetComponent<BoxCollider2D>().enabled = false;
 
         //start new minigame
         GameObject newMinigame = null;
@@ -117,6 +119,10 @@ public class PlayerManager : MonoBehaviour
 
     public void EndMinigame()
     {
+        //reactivate active weapon
+        LevelManager.instance.activeWeapon.GetComponent<SpriteRenderer>().enabled = true;
+        LevelManager.instance.activeWeapon.GetComponent<BoxCollider2D>().enabled = true;
+
         Debug.Log("ENDING MIN GAME");
         //(1, true) //(3, false) for normal run
         //tutorial = TutorialCheck(1, true); //true will complete the tutorial check regardless of the game
