@@ -169,7 +169,7 @@ public class LevelManager : MonoBehaviour
         //hide main UI and show level end UI
         PlayerManager.instance.ToggleUI(false);
         endUI.enabled = true;
-        endUI.text = "Quota: " + weaponsNeeded + "\n\nWeapons Disenchanted: " + weaponsCompleted;
+        //endUI.text = "Quota: " + weaponsNeeded + "\n\nWeapons Disenchanted: " + weaponsCompleted;
         if(weaponsCompleted >= weaponsNeeded)
         {
             level++;
