@@ -2108,6 +2108,7 @@ MonoBehaviour:
   weaponsCompleted: 0
   levelTime: 100
   endBox: {fileID: 9133488829458695150, guid: dc5a6ea2859326244a0bcd609c73c85a, type: 3}
+  winBox: {fileID: 8235121933919400880, guid: 00bd53b7b824e0c41b9c8ef71d4118f3, type: 3}
   scoreUI: {fileID: 656209993}
   quotaUI: {fileID: 1084304406}
   timerUI: {fileID: 1419901793}

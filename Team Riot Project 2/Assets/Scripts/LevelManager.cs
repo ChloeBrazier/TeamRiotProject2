@@ -27,6 +27,9 @@ public class LevelManager : MonoBehaviour
     public float levelTime = 10f;
     private float levelTick = 0;
     public GameObject endBox;
+    private GameObject activeEnd;
+    public GameObject winBox;
+    private GameObject activeWin;
     //current level
     private int level = 0;
 
@@ -128,6 +131,7 @@ public class LevelManager : MonoBehaviour
                     {
                         PlayMusic(0);
                         endUI.enabled = false;
+                        Destroy(activeWin);
                         PlayerManager.instance.ToggleUI(true);
                         Destroy(PlayerManager.instance.currentMinigame);
                         levelTick = levelTime + level * levelTime/1.2f;
@@ -169,14 +173,16 @@ public class LevelManager : MonoBehaviour
         if(weaponsCompleted >= weaponsNeeded)
         {
             level++;
-            endUI.text += "\n\n Level: "+level +" Complete!";
+            //endUI.text += "\n\n Level: "+level +" Complete!";
+            activeWin = Instantiate(winBox, endUI.transform.position, Quaternion.identity);
+            activeWin.transform.parent = GameObject.FindGameObjectWithTag("interface").transform;
             PlayMusic(1);
         }
         else
         {
-            
-            var en = Instantiate(endBox, endUI.transform.position, Quaternion.identity);
-            en.transform.parent = GameObject.FindGameObjectWithTag("interface").transform;
+
+            activeEnd = Instantiate(endBox, endUI.transform.position, Quaternion.identity);
+            activeEnd.transform.parent = GameObject.FindGameObjectWithTag("interface").transform;
             
             
             PlayMusic(2);
